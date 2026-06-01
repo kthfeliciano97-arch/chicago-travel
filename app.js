@@ -790,7 +790,39 @@ legend.onAdd = function () {
         <span style="text-transform:capitalize;">${cat}</span>
       </div>`
     ).join('')}
+    <div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid #2e2e2e;">
+      <span style="font-size:14px;">🏠</span>
+      <span>Your Stay</span>
+    </div>
   `;
   return div;
 };
 legend.addTo(map);
+
+/* ── AIRBNB MARKER ────────────────────────────── */
+const airbnbIcon = L.divIcon({
+  className: '',
+  html: `<div style="
+    width:42px;height:42px;
+    background:#FF5A5F;
+    border:3px solid #fff;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 4px rgba(255,90,95,0.3), 0 4px 14px rgba(0,0,0,0.5);
+    font-size:20px;
+  ">🏠</div>`,
+  iconSize: [42, 42],
+  iconAnchor: [21, 21],
+  popupAnchor: [0, -24]
+});
+
+L.marker([41.8972, -87.6671], { icon: airbnbIcon })
+  .addTo(map)
+  .bindPopup(`
+    <div style="text-align:center;padding:4px 0;">
+      <div style="font-size:1.8rem;margin-bottom:6px;">🏠</div>
+      <strong style="font-family:'Syne',sans-serif;font-size:0.95rem;color:#fff;">Your Stay</strong><br/>
+      <span style="font-size:0.75rem;color:#9a9080;">Ukrainian Village / West Town</span>
+    </div>
+  `)
+  .openPopup();
