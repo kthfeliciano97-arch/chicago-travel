@@ -182,6 +182,167 @@ body {
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
 
+/* === TIKTOK SECTION === */
+.tiktok-section {
+  padding: 80px 0;
+  background: var(--dark-2);
+}
+
+.tt-header { margin-bottom: 36px; }
+
+.tt-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ff2d55;
+  margin-bottom: 10px;
+}
+
+.tt-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.tt-tab {
+  background: var(--dark-3);
+  color: var(--text-muted);
+  border: 1px solid var(--dark-4);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 11px 24px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tt-tab:hover { border-color: #ff2d55; color: #ff2d55; }
+.tt-tab.active { background: #ff2d55; color: #fff; border-color: #ff2d55; }
+
+.tt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tt-card {
+  background: var(--dark-3);
+  border: 1px solid var(--dark-4);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  cursor: default;
+}
+.tt-card:hover {
+  transform: translateX(4px);
+  border-color: rgba(255,45,85,0.4);
+  box-shadow: 0 4px 24px rgba(255,45,85,0.08);
+}
+
+.tt-rank {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1;
+  text-align: center;
+  min-width: 52px;
+}
+.tt-rank-1  { color: #FFD700; }
+.tt-rank-2  { color: #C0C0C0; }
+.tt-rank-3  { color: #CD7F32; }
+.tt-rank-4, .tt-rank-5, .tt-rank-6,
+.tt-rank-7, .tt-rank-8, .tt-rank-9,
+.tt-rank-10 { color: var(--dark-4); }
+
+.tt-card-body { min-width: 0; }
+
+.tt-card-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.tt-card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.tt-black-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: rgba(145,90,255,0.2);
+  color: #b07fff;
+  border: 1px solid rgba(145,90,255,0.3);
+  white-space: nowrap;
+}
+
+.tt-card-hood {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.tt-card-why {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.tt-card-must {
+  font-size: 0.78rem;
+  color: #ff2d55;
+  font-weight: 600;
+}
+.tt-card-must span { color: var(--text-muted); font-weight: 400; }
+
+.tt-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.tt-pill {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  color: var(--text-muted);
+  border: 1px solid var(--dark-4);
+  white-space: nowrap;
+}
+
+/* top 3 cards get a highlight */
+.tt-card:nth-child(1) { border-left: 3px solid #FFD700; }
+.tt-card:nth-child(2) { border-left: 3px solid #C0C0C0; }
+.tt-card:nth-child(3) { border-left: 3px solid #CD7F32; }
+
+@media (max-width: 600px) {
+  .tt-card { grid-template-columns: 40px 1fr; }
+  .tt-pills { display: none; }
+  .tt-rank { font-size: 1.6rem; min-width: 40px; }
+}
+
 /* === BRUNCH SECTION === */
 .brunch-section {
   padding: 80px 0;
