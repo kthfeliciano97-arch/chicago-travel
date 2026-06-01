@@ -1101,6 +1101,18 @@ const categoryEmojis = {
   brunch:    '🥂'
 };
 
+/* marker group registry — keyed by category slug */
+const markerGroups = {};
+const groupVisible = {};
+
+function initGroup(key) {
+  markerGroups[key] = [];
+  groupVisible[key] = true;
+}
+
+['culture','food','nightlife','outdoors','shopping','brunch',
+ 'tt-brunch','tt-nightlife','tt-lunch','tt-chicagoeats'].forEach(initGroup);
+
 const markers = [];
 
 activities.forEach(act => {
@@ -1135,6 +1147,116 @@ activities.forEach(act => {
     `);
 
   markers.push({ marker, act });
+  if (markerGroups[act.category]) markerGroups[act.category].push(marker);
+});
+
+/* ── TIKTOK MAP DATA ──────────────────────────── */
+const tiktokMapData = {
+  brunch: [
+    { rank:1,  name:"Batter & Berries",         lat:41.9326, lng:-87.6529 },
+    { rank:2,  name:"The Duplex",                lat:41.9279, lng:-87.7044 },
+    { rank:3,  name:"Brûlée Chicago",            lat:41.8520, lng:-87.6285 },
+    { rank:4,  name:"Chemistry",                 lat:41.8007, lng:-87.5937 },
+    { rank:5,  name:"Luella's Southern Kitchen", lat:41.9735, lng:-87.6895 },
+    { rank:6,  name:"Beatnik on the River",      lat:41.8847, lng:-87.6447 },
+    { rank:7,  name:"Hubbard Inn",               lat:41.8903, lng:-87.6293 },
+    { rank:8,  name:"The Brunchery",             lat:41.9197, lng:-87.6362 },
+    { rank:9,  name:"Spoken Cafe",               lat:41.8361, lng:-87.6259 },
+    { rank:10, name:"Virtue Restaurant",         lat:41.7997, lng:-87.5955 },
+  ],
+  nightlife: [
+    { rank:1,  name:"TAO Chicago",               lat:41.8934, lng:-87.6315 },
+    { rank:2,  name:"HUE Chicago",               lat:41.8940, lng:-87.6332 },
+    { rank:3,  name:"Spybar",                    lat:41.8935, lng:-87.6339 },
+    { rank:4,  name:"Boleo Rooftop",             lat:41.8873, lng:-87.6279 },
+    { rank:5,  name:"Cindy's Rooftop",           lat:41.8820, lng:-87.6248 },
+    { rank:6,  name:"Goodnight John Boy",        lat:41.8963, lng:-87.6551 },
+    { rank:7,  name:"Green Mill Jazz Club",      lat:41.9731, lng:-87.6594 },
+    { rank:8,  name:"Soho House Chicago",        lat:41.8838, lng:-87.6441 },
+    { rank:9,  name:"Hubbard Inn",               lat:41.8905, lng:-87.6298 },
+    { rank:10, name:"Scarlett Bar",              lat:41.9440, lng:-87.6513 },
+  ],
+  lunch: [
+    { rank:1,  name:"Au Cheval",                 lat:41.8840, lng:-87.6478 },
+    { rank:2,  name:"Girl & the Goat",           lat:41.8838, lng:-87.6487 },
+    { rank:3,  name:"J.P. Graziano Grocery",     lat:41.8843, lng:-87.6494 },
+    { rank:4,  name:"Monteverde",                lat:41.8817, lng:-87.6523 },
+    { rank:5,  name:"Garifuna Flava",            lat:41.9924, lng:-87.6627 },
+    { rank:6,  name:"Beatrix",                   lat:41.8906, lng:-87.6312 },
+    { rank:7,  name:"Santa Masa Tamaleria",      lat:41.8558, lng:-87.6632 },
+    { rank:8,  name:"Bocadillo Market",          lat:41.8982, lng:-87.6728 },
+    { rank:9,  name:"Galit",                     lat:41.9267, lng:-87.6519 },
+    { rank:10, name:"Publican Quality Meats",    lat:41.8862, lng:-87.6484 },
+  ],
+  chicagoeats: [
+    { rank:1,  name:"Au Cheval",                 lat:41.8841, lng:-87.6480 },
+    { rank:2,  name:"Lou Malnati's",             lat:41.8896, lng:-87.6344 },
+    { rank:3,  name:"Al's #1 Italian Beef",      lat:41.8930, lng:-87.6340 },
+    { rank:4,  name:"Harold's Chicken Shack",    lat:41.8409, lng:-87.6195 },
+    { rank:5,  name:"Portillo's",                lat:41.8935, lng:-87.6355 },
+    { rank:6,  name:"Pequod's Pizza",            lat:41.9226, lng:-87.6617 },
+    { rank:7,  name:"Lem's Bar-B-Q",             lat:41.7567, lng:-87.6087 },
+    { rank:8,  name:"The Purple Pig",            lat:41.8899, lng:-87.6246 },
+    { rank:9,  name:"Giordano's",                lat:41.8848, lng:-87.6224 },
+    { rank:10, name:"Superdawg Drive-In",        lat:41.9956, lng:-87.7611 },
+  ]
+};
+
+const ttColors = {
+  brunch:      '#ff9a3c',
+  nightlife:   '#4ecdc4',
+  lunch:       '#ffd166',
+  chicagoeats: '#ff6b6b'
+};
+
+const ttEmojis = {
+  brunch:      '🥂',
+  nightlife:   '🎧',
+  lunch:       '🥗',
+  chicagoeats: '🍕'
+};
+
+Object.entries(tiktokMapData).forEach(([cat, spots]) => {
+  const color = ttColors[cat];
+  const emoji = ttEmojis[cat];
+  spots.forEach(spot => {
+    const icon = L.divIcon({
+      className: '',
+      html: `<div style="
+        width:34px;height:34px;
+        background:${color};
+        border:2px solid #fff;
+        border-radius:8px;
+        display:flex;flex-direction:column;align-items:center;justify-content:center;
+        box-shadow:0 3px 10px rgba(0,0,0,0.45);
+        gap:0;
+      ">
+        <span style="font-size:9px;font-family:'Syne',sans-serif;font-weight:800;color:#fff;line-height:1;">#${spot.rank}</span>
+        <span style="font-size:12px;line-height:1;">${emoji}</span>
+      </div>`,
+      iconSize: [34, 34],
+      iconAnchor: [17, 17],
+      popupAnchor: [0, -20]
+    });
+
+    const marker = L.marker([spot.lat, spot.lng], { icon })
+      .addTo(map)
+      .bindPopup(`
+        <div style="min-width:180px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span style="
+              background:${color};color:#fff;
+              font-family:'Syne',sans-serif;font-weight:800;font-size:0.75rem;
+              padding:3px 8px;border-radius:6px;
+            ">#${spot.rank} TikTok</span>
+            <span style="font-size:0.7rem;color:#9a9080;text-transform:capitalize;">${cat === 'chicagoeats' ? 'Chicago Eats' : cat}</span>
+          </div>
+          <strong style="font-family:'Syne',sans-serif;font-size:0.95rem;color:#fff;">${spot.name}</strong>
+        </div>
+      `);
+
+    markerGroups['tt-' + cat].push(marker);
+  });
 });
 
 /* ── BRUNCH GRID ──────────────────────────────── */
@@ -1227,31 +1349,90 @@ document.getElementById('filters').addEventListener('click', e => {
   });
 });
 
-/* ── MAP LEGEND ───────────────────────────────── */
-const legend = L.control({ position: 'bottomright' });
-legend.onAdd = function () {
-  const div = L.DomUtil.create('div');
-  div.style.cssText = `
-    background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;
-    padding:12px 16px;font-family:'Inter',sans-serif;font-size:0.78rem;color:#e8e3db;
-    box-shadow:0 4px 16px rgba(0,0,0,0.5);
-  `;
-  div.innerHTML = `
-    <div style="font-weight:700;margin-bottom:8px;color:#F5A623;font-family:'Syne',sans-serif;">Legend</div>
-    ${Object.entries(categoryColors).map(([cat, color]) =>
-      `<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-        <span style="width:12px;height:12px;background:${color};border-radius:50%;display:inline-block;"></span>
-        <span style="text-transform:capitalize;">${cat}</span>
-      </div>`
-    ).join('')}
-    <div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid #2e2e2e;">
-      <span style="font-size:14px;">🏠</span>
+/* ── INTERACTIVE LEGEND ───────────────────────── */
+const legendControl = L.control({ position: 'bottomright' });
+let legendDiv;
+
+const activityLabels = {
+  culture:   { label: 'Culture',   emoji: '🎨' },
+  food:      { label: 'Food',      emoji: '🍽️' },
+  nightlife: { label: 'Nightlife', emoji: '🎵' },
+  outdoors:  { label: 'Outdoors',  emoji: '🌿' },
+  shopping:  { label: 'Shopping',  emoji: '🛍️' },
+  brunch:    { label: 'Brunch',    emoji: '🥂' },
+};
+
+const ttLabels = {
+  'tt-brunch':      { label: 'TikTok - Brunch',       color: ttColors.brunch,      emoji: ttEmojis.brunch },
+  'tt-nightlife':   { label: 'TikTok - Nightlife',     color: ttColors.nightlife,   emoji: ttEmojis.nightlife },
+  'tt-lunch':       { label: 'TikTok - Lunch',         color: ttColors.lunch,       emoji: ttEmojis.lunch },
+  'tt-chicagoeats': { label: 'TikTok - Chicago Eats',  color: ttColors.chicagoeats, emoji: ttEmojis.chicagoeats },
+};
+
+function buildLegendHTML() {
+  const actRows = Object.entries(activityLabels).map(([key, { label, emoji }]) => {
+    const color = categoryColors[key];
+    const dim = groupVisible[key] ? '' : 'opacity:0.35;';
+    const strike = groupVisible[key] ? '' : 'text-decoration:line-through;';
+    return `
+      <div class="leg-row" data-group="${key}" style="${dim}cursor:pointer;" title="Click to toggle">
+        <span style="width:13px;height:13px;background:${color};border-radius:50%;display:inline-block;flex-shrink:0;"></span>
+        <span style="${strike}">${emoji} ${label}</span>
+      </div>`;
+  }).join('');
+
+  const ttRows = Object.entries(ttLabels).map(([key, { label, color, emoji }]) => {
+    const dim = groupVisible[key] ? '' : 'opacity:0.35;';
+    const strike = groupVisible[key] ? '' : 'text-decoration:line-through;';
+    return `
+      <div class="leg-row" data-group="${key}" style="${dim}cursor:pointer;" title="Click to toggle">
+        <span style="width:13px;height:13px;background:${color};border-radius:3px;display:inline-block;flex-shrink:0;border:1px solid rgba(255,255,255,0.3);"></span>
+        <span style="${strike}">${emoji} ${label}</span>
+      </div>`;
+  }).join('');
+
+  return `
+    <div style="font-weight:700;margin-bottom:10px;color:#F5A623;font-family:'Syne',sans-serif;font-size:0.8rem;letter-spacing:0.05em;">
+      MAP LEGEND
+    </div>
+    <div style="font-size:0.65rem;color:#9a9080;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Activities</div>
+    ${actRows}
+    <div style="font-size:0.65rem;color:#ff2d55;letter-spacing:0.1em;text-transform:uppercase;margin:10px 0 6px;padding-top:8px;border-top:1px solid #2e2e2e;">TikTok</div>
+    ${ttRows}
+    <div class="leg-row" style="margin-top:8px;padding-top:8px;border-top:1px solid #2e2e2e;">
+      <span style="font-size:13px;">🏠</span>
       <span>Your Stay</span>
     </div>
+    <div style="font-size:0.6rem;color:#555;margin-top:8px;">Click any row to toggle</div>
   `;
-  return div;
+}
+
+legendControl.onAdd = function () {
+  legendDiv = L.DomUtil.create('div');
+  legendDiv.style.cssText = `
+    background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;
+    padding:14px 16px;font-family:'Inter',sans-serif;font-size:0.78rem;color:#e8e3db;
+    box-shadow:0 4px 20px rgba(0,0,0,0.6);max-height:420px;overflow-y:auto;min-width:190px;
+  `;
+  legendDiv.innerHTML = buildLegendHTML();
+
+  L.DomEvent.disableClickPropagation(legendDiv);
+  L.DomEvent.disableScrollPropagation(legendDiv);
+
+  legendDiv.addEventListener('click', e => {
+    const row = e.target.closest('.leg-row[data-group]');
+    if (!row) return;
+    const key = row.dataset.group;
+    groupVisible[key] = !groupVisible[key];
+    markerGroups[key].forEach(m => {
+      groupVisible[key] ? m.addTo(map) : m.remove();
+    });
+    legendDiv.innerHTML = buildLegendHTML();
+  });
+
+  return legendDiv;
 };
-legend.addTo(map);
+legendControl.addTo(map);
 
 /* ── AIRBNB MARKER ────────────────────────────── */
 const airbnbIcon = L.divIcon({
