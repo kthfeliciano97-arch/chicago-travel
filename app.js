@@ -1101,6 +1101,74 @@ const categoryEmojis = {
   brunch:    '🥂'
 };
 
+/* ── SPOT DETAILS (address + phone) ──────────────── */
+const spotInfo = {
+  1:  { address: '201 E Randolph St, Chicago',          phone: '(312) 742-1168' },
+  2:  { address: '111 S Michigan Ave, Chicago',          phone: '(312) 443-3600' },
+  4:  { address: '740 E 56th Pl, Chicago',               phone: '(773) 947-0600' },
+  5:  { address: '600 E Grand Ave, Chicago',             phone: '(312) 595-7437' },
+  7:  { address: '1462 E 53rd St, Chicago',              phone: '(773) 947-8881' },
+  10: { address: '113 N Green St, Chicago',              phone: '(312) 521-8000' },
+  11: { address: '4655 S King Dr, Chicago',              phone: '(773) 624-8089' },
+  12: { address: '112 E Wacker Dr, Chicago',             phone: '(312) 922-3432' },
+  13: { address: '4802 N Broadway, Chicago',             phone: '(773) 878-5552' },
+  14: { address: '5200 S Dorchester Ave, Chicago',       phone: null             },
+  16: { address: '646 N Franklin St, Chicago',           phone: '(312) 337-2191' },
+  17: { address: '5700 S DuSable Lake Shore Dr',         phone: '(773) 684-1414' },
+  18: { address: '307 E 47th St, Chicago',               phone: '(773) 373-1200' },
+  20: { address: '65 E Washington St, Chicago',          phone: '(312) 726-2020' },
+  21: { address: '122 W Monroe St, Chicago',             phone: '(312) 750-9012' },
+  23: { address: '3137 W Logan Blvd, Chicago',           phone: '(773) 799-8558' },
+  24: { address: '2748 N Lincoln Ave, Chicago',          phone: '(773) 248-7710' },
+  25: { address: '2318 S State St, Chicago',             phone: '(773) 248-7710' },
+  26: { address: '5121 S Harper Ave, Chicago',           phone: '(312) 752-7576' },
+  27: { address: '110 W Hubbard St, Chicago',            phone: '(312) 222-1331' },
+};
+
+const ttSpotInfo = {
+  'Batter & Berries':        { address: '2748 N Lincoln Ave',      phone: '(773) 248-7710' },
+  'The Duplex':              { address: '3137 W Logan Blvd',       phone: '(773) 799-8558' },
+  'Chemistry':               { address: '5121 S Harper Ave',       phone: '(312) 752-7576' },
+  "Luella's Southern Kitchen":{ address: '4609 N Lincoln Ave',     phone: '(773) 961-8196' },
+  'Beatnik on the River':    { address: '759 N Milwaukee Ave',     phone: '(312) 929-4945' },
+  'Hubbard Inn':             { address: '110 W Hubbard St',        phone: '(312) 222-1331' },
+  'Virtue Restaurant':       { address: '1462 E 53rd St',          phone: '(773) 947-8881' },
+  'TAO Chicago':             { address: '632 N Dearborn St',       phone: '(312) 202-0500' },
+  'Spybar':                  { address: '646 N Franklin St',       phone: '(312) 337-2191' },
+  'Boleo Rooftop':           { address: '122 W Monroe St',         phone: '(312) 750-9012' },
+  "Cindy's Rooftop":         { address: '12 S Michigan Ave',       phone: '(312) 792-3502' },
+  'Green Mill Jazz Club':    { address: '4802 N Broadway',         phone: '(773) 878-5552' },
+  'Soho House Chicago':      { address: '113 N Green St',          phone: '(312) 521-8000' },
+  'Au Cheval':               { address: '800 W Randolph St',       phone: '(312) 929-4580' },
+  'Girl & the Goat':         { address: '800 W Randolph St',       phone: '(312) 492-6262' },
+  'J.P. Graziano Grocery':   { address: '901 W Randolph St',       phone: '(312) 666-4587' },
+  'Monteverde':              { address: '1020 W Madison St',       phone: '(312) 888-3041' },
+  'Garifuna Flava':          { address: '7954 S Cottage Grove Ave',phone: '(773) 966-7858' },
+  'Beatrix':                 { address: '519 N Clark St',          phone: '(312) 284-1377' },
+  'Santa Masa Tamaleria':    { address: '2209 S Halsted St',       phone: '(312) 226-8262' },
+  'Bocadillo Market':        { address: '816 N Ashland Ave',       phone: '(312) 929-4572' },
+  'Galit':                   { address: '2429 N Lincoln Ave',      phone: '(773) 360-8755' },
+  'Publican Quality Meats':  { address: '825 W Fulton Market',     phone: '(312) 445-8977' },
+  "Lou Malnati's":           { address: '439 N Wells St',          phone: '(312) 828-9800' },
+  "Al's #1 Italian Beef":    { address: '169 W Ontario St',        phone: '(312) 943-3222' },
+  "Harold's Chicken Shack":  { address: '307 E 47th St',           phone: '(773) 373-1200' },
+  "Portillo's":              { address: '100 W Ontario St',        phone: '(312) 587-8910' },
+  "Pequod's Pizza":          { address: '2207 N Clybourn Ave',     phone: '(773) 327-1512' },
+  "Lem's Bar-B-Q":           { address: '311 E 75th St',           phone: '(773) 994-2428' },
+  'The Purple Pig':          { address: '444 N Michigan Ave',      phone: '(312) 464-1744' },
+  "Giordano's":              { address: '130 E Randolph St',       phone: '(312) 616-1200' },
+  'Superdawg Drive-In':      { address: '6363 N Milwaukee Ave',    phone: '(773) 763-0660' },
+};
+
+function detailsHTML(info) {
+  if (!info) return '';
+  return `
+    <div style="margin-top:8px;padding-top:8px;border-top:1px solid #2e2e2e;">
+      ${info.address ? `<div style="font-size:0.75rem;color:#9a9080;margin-bottom:3px;">📍 ${info.address}</div>` : ''}
+      ${info.phone   ? `<div style="font-size:0.75rem;color:#9a9080;">📞 <a href="tel:${info.phone}" style="color:#F5A623;text-decoration:none;">${info.phone}</a></div>` : ''}
+    </div>`;
+}
+
 /* marker group registry — keyed by category slug */
 const markerGroups = {};
 const groupVisible = {};
@@ -1138,11 +1206,12 @@ activities.forEach(act => {
   const marker = L.marker([act.lat, act.lng], { icon })
     .addTo(map)
     .bindPopup(`
-      <div style="min-width:200px;">
-        <img src="${act.img}" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:10px;" />
+      <div style="min-width:210px;">
+        <img src="${act.img}" style="width:100%;height:110px;object-fit:cover;border-radius:8px;margin-bottom:10px;" />
         <strong style="font-family:'Syne',sans-serif;font-size:0.95rem;color:#fff;">${act.name}</strong><br/>
-        <span style="font-size:0.75rem;color:#9a9080;">📍 ${act.neighborhood}</span><br/>
-        <p style="font-size:0.8rem;margin-top:6px;color:#e8e3db;">${act.description.slice(0, 100)}…</p>
+        <span style="font-size:0.75rem;color:#9a9080;">${act.neighborhood}</span>
+        <p style="font-size:0.8rem;margin-top:6px;color:#e8e3db;">${act.description.slice(0, 90)}…</p>
+        ${detailsHTML(spotInfo[act.id])}
       </div>
     `);
 
@@ -1242,16 +1311,17 @@ Object.entries(tiktokMapData).forEach(([cat, spots]) => {
     const marker = L.marker([spot.lat, spot.lng], { icon })
       .addTo(map)
       .bindPopup(`
-        <div style="min-width:180px;">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+        <div style="min-width:210px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
             <span style="
               background:${color};color:#fff;
               font-family:'Syne',sans-serif;font-weight:800;font-size:0.75rem;
               padding:3px 8px;border-radius:6px;
-            ">#${spot.rank} TikTok</span>
-            <span style="font-size:0.7rem;color:#9a9080;text-transform:capitalize;">${cat === 'chicagoeats' ? 'Chicago Eats' : cat}</span>
+            ">#${spot.rank}</span>
+            <span style="font-size:0.7rem;color:#ff2d55;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">TikTok ${cat === 'chicagoeats' ? 'Chicago Eats' : cat}</span>
           </div>
           <strong style="font-family:'Syne',sans-serif;font-size:0.95rem;color:#fff;">${spot.name}</strong>
+          ${detailsHTML(ttSpotInfo[spot.name])}
         </div>
       `);
 
@@ -1458,6 +1528,58 @@ L.marker([41.8972, -87.6671], { icon: airbnbIcon })
       <div style="font-size:1.8rem;margin-bottom:6px;">🏠</div>
       <strong style="font-family:'Syne',sans-serif;font-size:0.95rem;color:#fff;">Your Stay</strong><br/>
       <span style="font-size:0.75rem;color:#9a9080;">Ukrainian Village / West Town</span>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px solid #2e2e2e;font-size:0.75rem;color:#9a9080;">
+        📍 862 N Ashland Ave, Chicago
+      </div>
     </div>
   `)
   .openPopup();
+
+/* ── MOBILE VIEW MODE ─────────────────────────── */
+function isMobileUA() {
+  return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    || window.innerWidth <= 768;
+}
+
+function applyViewMode(mode) {
+  if (mode === 'mobile') {
+    document.body.classList.add('mobile-mode');
+    document.getElementById('view-mode-label').textContent = '🖥️ Desktop View';
+  } else {
+    document.body.classList.remove('mobile-mode');
+    document.getElementById('view-mode-label').textContent = '📱 Mobile View';
+  }
+  map.invalidateSize();
+}
+
+function initViewMode() {
+  const stored = localStorage.getItem('chi-view-mode');
+  applyViewMode(stored || (isMobileUA() ? 'mobile' : 'desktop'));
+}
+
+document.getElementById('view-mode-btn').addEventListener('click', () => {
+  const isMobile = document.body.classList.contains('mobile-mode');
+  const next = isMobile ? 'desktop' : 'mobile';
+  localStorage.setItem('chi-view-mode', next);
+  applyViewMode(next);
+});
+
+initViewMode();
+
+/* ── BOTTOM NAV ACTIVE STATE ──────────────────── */
+const navSections = ['map-section','activities','brunch','events','tiktok'];
+const navItems    = document.querySelectorAll('.mob-nav-item');
+
+function updateActiveNav() {
+  let current = navSections[0];
+  navSections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= 100) current = id;
+  });
+  navItems.forEach(item => {
+    item.classList.toggle('active', item.dataset.section === current);
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+updateActiveNav();

@@ -1227,3 +1227,215 @@ body {
   #map { height: 380px; }
   .cards-grid { grid-template-columns: 1fr; }
 }
+
+/* =====================================================
+   MOBILE VIEW TOGGLE BUTTON (always visible)
+   ===================================================== */
+.view-mode-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9000;
+  background: rgba(14,14,14,0.92);
+  border: 1px solid var(--dark-4);
+  color: var(--text-muted);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 7px 14px;
+  border-radius: 100px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.view-mode-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* =====================================================
+   MOBILE BOTTOM NAV (hidden by default)
+   ===================================================== */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 8000;
+  background: rgba(14,14,14,0.97);
+  border-top: 1px solid var(--dark-4);
+  backdrop-filter: blur(12px);
+  padding: 0;
+  height: 64px;
+}
+
+.mob-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex: 1;
+  text-decoration: none;
+  color: var(--text-muted);
+  padding: 8px 4px;
+  transition: color 0.15s;
+  border: none;
+  background: none;
+  height: 100%;
+}
+.mob-nav-item.active { color: var(--gold); }
+.mob-nav-item:hover  { color: var(--gold); }
+
+.mob-nav-icon  { font-size: 1.3rem; line-height: 1; }
+.mob-nav-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.58rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* =====================================================
+   MOBILE MODE — body.mobile-mode overrides everything
+   ===================================================== */
+body.mobile-mode {
+  padding-bottom: 64px;
+}
+
+/* Show bottom nav only in mobile mode */
+body.mobile-mode .mobile-nav {
+  display: flex;
+}
+
+/* Compact hero */
+body.mobile-mode .hero {
+  min-height: 70vh;
+}
+body.mobile-mode .hero h1 {
+  font-size: clamp(2.6rem, 12vw, 4.5rem);
+}
+body.mobile-mode .hero-sub {
+  font-size: 0.9rem;
+}
+body.mobile-mode .hero-ctas {
+  flex-direction: column;
+  align-items: center;
+}
+body.mobile-mode .btn-primary,
+body.mobile-mode .btn-secondary {
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+}
+
+/* Intro strip */
+body.mobile-mode .intro-strip {
+  flex-wrap: wrap;
+}
+body.mobile-mode .strip-item {
+  width: 50%;
+  border-right: none;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  justify-content: center;
+  padding: 10px 8px;
+}
+body.mobile-mode .strip-item:nth-child(odd) {
+  border-right: 1px solid rgba(0,0,0,0.12);
+}
+
+/* Section spacing */
+body.mobile-mode .map-section,
+body.mobile-mode .activities-section,
+body.mobile-mode .brunch-section,
+body.mobile-mode .tiktok-section,
+body.mobile-mode .events-section,
+body.mobile-mode .neighborhoods-section,
+body.mobile-mode .tips-section {
+  padding: 48px 0;
+}
+
+/* Map */
+body.mobile-mode #map {
+  height: 320px;
+  border-radius: 12px;
+}
+
+/* All grids → single column */
+body.mobile-mode .cards-grid,
+body.mobile-mode .brunch-grid,
+body.mobile-mode .hoods-grid,
+body.mobile-mode .tips-grid {
+  grid-template-columns: 1fr;
+}
+
+/* TikTok cards */
+body.mobile-mode .tt-card {
+  grid-template-columns: 44px 1fr;
+  padding: 14px 16px;
+  gap: 12px;
+}
+body.mobile-mode .tt-pills { display: none; }
+body.mobile-mode .tt-rank  { font-size: 1.5rem; min-width: 44px; }
+
+/* Event cards */
+body.mobile-mode .event-card {
+  grid-template-columns: 60px 1fr;
+  padding: 14px 16px;
+  gap: 12px;
+}
+body.mobile-mode .event-tags {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+body.mobile-mode .event-day-num { font-size: 1.5rem; }
+
+/* Calendar — horizontal scroll */
+body.mobile-mode .cal-grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+body.mobile-mode .cal-day-col {
+  min-width: 200px;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* View toggle */
+body.mobile-mode .events-header {
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Juneteenth banner */
+body.mobile-mode .jb-inner {
+  flex-direction: column;
+  gap: 24px;
+}
+body.mobile-mode .jb-badge { display: none; }
+
+/* Section titles */
+body.mobile-mode .section-title {
+  font-size: clamp(1.8rem, 7vw, 2.4rem);
+}
+
+/* Brunch cards */
+body.mobile-mode .brunch-card-img { height: 160px; }
+
+/* Filter buttons — horizontal scroll */
+body.mobile-mode .filters,
+body.mobile-mode .tt-tabs,
+body.mobile-mode .day-tabs {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+body.mobile-mode .filters::-webkit-scrollbar,
+body.mobile-mode .tt-tabs::-webkit-scrollbar,
+body.mobile-mode .day-tabs::-webkit-scrollbar { display: none; }
+
+/* Popup phone/address readability */
+.leaflet-popup-content img { max-width: 100%; }
+
+/* Neighborhoods grid */
+body.mobile-mode .hoods-grid { gap: 12px; }
+body.mobile-mode .hood-card  { padding: 20px 16px; }
