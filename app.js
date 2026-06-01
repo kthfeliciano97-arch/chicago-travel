@@ -564,7 +564,105 @@ const events = [
   }
 ];
 
-/* ── EVENTS RENDER ────────────────────────────── */
+/* ── CALENDAR & EVENTS ────────────────────────── */
+const calDays = [
+  { key: 'thu', name: 'Thu', num: '18', month: 'Jun' },
+  { key: 'fri', name: 'Fri', num: '19', month: 'Jun' },
+  { key: 'sat', name: 'Sat', num: '20', month: 'Jun' },
+  { key: 'sun', name: 'Sun', num: '21', month: 'Jun' },
+  { key: 'mon', name: 'Mon', num: '22', month: 'Jun' }
+];
+
+const typeColors = {
+  free:     '#6bcb77',
+  ticketed: '#ff6b6b',
+  historic: '#9b6dff'
+};
+
+function loadCustomEvents() {
+  try { return JSON.parse(localStorage.getItem('chi-custom-events') || '[]'); }
+  catch { return []; }
+}
+
+function saveCustomEvents(evts) {
+  localStorage.setItem('chi-custom-events', JSON.stringify(evts));
+}
+
+function renderCalendar() {
+  const calGrid = document.getElementById('cal-grid');
+  const customEvts = loadCustomEvents();
+  calGrid.innerHTML = '';
+
+  calDays.forEach(day => {
+    const col = document.createElement('div');
+    col.className = 'cal-day-col';
+    col.innerHTML = `
+      <div class="cal-day-header">
+        <span class="cal-day-name">${day.name}</span>
+        <span class="cal-day-num">${day.num}</span>
+        <span class="cal-day-month">${day.month}</span>
+      </div>
+      <div class="cal-events-list" id="cal-${day.key}"></div>
+      <button class="cal-add-btn" data-day="${day.key}">＋ Add</button>
+    `;
+    calGrid.appendChild(col);
+
+    const evtList = col.querySelector(`#cal-${day.key}`);
+
+    // curated events
+    events.filter(e => e.day === day.key).forEach(ev => {
+      const bg = typeColors[ev.type] || '#F5A623';
+      const block = document.createElement('div');
+      block.className = 'cal-event-block';
+      block.style.cssText = `background:${bg}22;border-left-color:${bg};`;
+      block.innerHTML = `
+        <span class="cal-event-time" style="color:${bg};">${ev.time.split('·')[0].trim()}</span>
+        <span class="cal-event-title">${ev.title}</span>
+      `;
+      block.addEventListener('click', () => showEventDetail(ev));
+      evtList.appendChild(block);
+    });
+
+    // custom events
+    customEvts.filter(e => e.day === day.key).forEach(ev => {
+      evtList.appendChild(buildCustomBlock(ev, customEvts));
+    });
+  });
+
+  // add-btn listeners
+  calGrid.querySelectorAll('.cal-add-btn').forEach(btn => {
+    btn.addEventListener('click', () => openModal(btn.dataset.day));
+  });
+}
+
+function buildCustomBlock(ev, allCustom) {
+  const block = document.createElement('div');
+  block.className = 'cal-event-block';
+  block.style.cssText = `background:${ev.color}22;border-left-color:${ev.color};`;
+  block.innerHTML = `
+    ${ev.time ? `<span class="cal-event-time" style="color:${ev.color};">${ev.time}</span>` : ''}
+    <span class="cal-event-title">${ev.title}</span>
+    ${ev.notes ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.5);display:block;margin-top:2px;">${ev.notes}</span>` : ''}
+    <button class="cal-event-delete" data-id="${ev.id}" title="Remove">✕</button>
+  `;
+  block.querySelector('.cal-event-delete').addEventListener('click', e => {
+    e.stopPropagation();
+    const updated = allCustom.filter(x => x.id !== ev.id);
+    saveCustomEvents(updated);
+    renderCalendar();
+  });
+  return block;
+}
+
+function showEventDetail(ev) {
+  document.getElementById('ev-title').value = ev.title;
+  document.getElementById('ev-day').value = ev.day;
+  document.getElementById('ev-time').value = ev.time || '';
+  document.getElementById('ev-notes').value = ev.description ? ev.description.slice(0, 80) : '';
+  openModal(ev.day, true);
+}
+
+/* ── LIST VIEW ────────────────────────────────── */
 function badgeHTML(type) {
   const badgeTypes = {
     free: ['badge-free', 'FREE'],
@@ -606,6 +704,7 @@ function renderEvents(filter) {
   });
 }
 
+renderCalendar();
 renderEvents('all');
 
 document.getElementById('day-tabs').addEventListener('click', e => {
@@ -614,6 +713,73 @@ document.getElementById('day-tabs').addEventListener('click', e => {
   document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
   tab.classList.add('active');
   renderEvents(tab.dataset.day);
+});
+
+/* ── VIEW TOGGLE ──────────────────────────────── */
+document.getElementById('btn-calendar').addEventListener('click', () => {
+  document.getElementById('calendar-view').style.display = '';
+  document.getElementById('list-view').style.display = 'none';
+  document.getElementById('btn-calendar').classList.add('active');
+  document.getElementById('btn-list').classList.remove('active');
+});
+
+document.getElementById('btn-list').addEventListener('click', () => {
+  document.getElementById('calendar-view').style.display = 'none';
+  document.getElementById('list-view').style.display = '';
+  document.getElementById('btn-list').classList.add('active');
+  document.getElementById('btn-calendar').classList.remove('active');
+});
+
+/* ── MODAL ────────────────────────────────────── */
+let selectedColor = '#F5A623';
+let modalPresetDay = null;
+
+function openModal(day, readOnly) {
+  modalPresetDay = day || 'thu';
+  document.getElementById('ev-day').value = modalPresetDay;
+  if (!readOnly) {
+    document.getElementById('ev-title').value = '';
+    document.getElementById('ev-time').value = '';
+    document.getElementById('ev-notes').value = '';
+  }
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.getElementById('event-form').reset();
+  selectedColor = '#F5A623';
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+  document.querySelector('.color-dot[data-color="#F5A623"]').classList.add('active');
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-cancel').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+
+document.getElementById('color-picker').addEventListener('click', e => {
+  const dot = e.target.closest('.color-dot');
+  if (!dot) return;
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+  dot.classList.add('active');
+  selectedColor = dot.dataset.color;
+});
+
+document.getElementById('event-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const title = document.getElementById('ev-title').value.trim();
+  const day   = document.getElementById('ev-day').value;
+  const time  = document.getElementById('ev-time').value.trim();
+  const notes = document.getElementById('ev-notes').value.trim();
+  if (!title) return;
+
+  const custom = loadCustomEvents();
+  custom.push({ id: Date.now().toString(), title, day, time, notes, color: selectedColor });
+  saveCustomEvents(custom);
+  closeModal();
+  renderCalendar();
 });
 
 /* ── MAP INIT ─────────────────────────────────── */
