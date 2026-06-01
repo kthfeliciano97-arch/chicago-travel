@@ -1440,6 +1440,10 @@ const ttLabels = {
   'tt-chicagoeats': { label: 'TikTok - Chicago Eats', color: ttColors.chicagoeats, emoji: ttEmojis.chicagoeats },
 };
 
+function isMobile() {
+  return document.body.classList.contains('mobile-mode');
+}
+
 function buildLegendHTML() {
   if (legendCollapsed) {
     return `
@@ -1460,7 +1464,7 @@ function buildLegendHTML() {
     const strike = groupVisible[key] ? '' : 'text-decoration:line-through;';
     return `
       <div class="leg-row" data-group="${key}" style="${dim}cursor:pointer;" title="Toggle layer">
-        <span style="width:13px;height:13px;background:${color};border-radius:50%;display:inline-block;flex-shrink:0;"></span>
+        <span style="width:12px;height:12px;background:${color};border-radius:50%;display:inline-block;flex-shrink:0;"></span>
         <span style="${strike}">${emoji} ${label}</span>
       </div>`;
   }).join('');
@@ -1470,36 +1474,43 @@ function buildLegendHTML() {
     const strike = groupVisible[key] ? '' : 'text-decoration:line-through;';
     return `
       <div class="leg-row" data-group="${key}" style="${dim}cursor:pointer;" title="Toggle layer">
-        <span style="width:13px;height:13px;background:${color};border-radius:3px;display:inline-block;flex-shrink:0;border:1px solid rgba(255,255,255,0.3);"></span>
+        <span style="width:12px;height:12px;background:${color};border-radius:3px;display:inline-block;flex-shrink:0;border:1px solid rgba(255,255,255,0.3);"></span>
         <span style="${strike}">${emoji} ${label}</span>
       </div>`;
   }).join('');
 
+  /* Scrollable inner content — header stays pinned at top */
   return `
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-      <span style="font-weight:700;color:#F5A623;font-family:'Syne',sans-serif;font-size:0.8rem;letter-spacing:0.05em;">MAP LEGEND</span>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-shrink:0;">
+      <span style="font-weight:700;color:#F5A623;font-family:'Syne',sans-serif;font-size:0.78rem;letter-spacing:0.05em;">MAP LEGEND</span>
       <button data-action="toggle-legend" style="
         background:rgba(255,255,255,0.07);border:1px solid #2e2e2e;border-radius:6px;
-        color:#9a9080;font-size:0.68rem;cursor:pointer;padding:3px 8px;
-        font-family:'Inter',sans-serif;white-space:nowrap;
+        color:#9a9080;font-size:0.65rem;cursor:pointer;padding:2px 7px;margin-left:10px;
+        font-family:'Inter',sans-serif;white-space:nowrap;flex-shrink:0;
       " title="Hide legend">▼ hide</button>
     </div>
-    <div style="font-size:0.65rem;color:#9a9080;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Activities</div>
-    ${actRows}
-    <div style="font-size:0.65rem;color:#ff2d55;letter-spacing:0.1em;text-transform:uppercase;margin:10px 0 6px;padding-top:8px;border-top:1px solid #2e2e2e;">TikTok</div>
-    ${ttRows}
-    <div class="leg-row" style="margin-top:8px;padding-top:8px;border-top:1px solid #2e2e2e;">
-      <span style="font-size:13px;">🏠</span>
-      <span>Your Stay</span>
+    <div style="overflow-y:auto;flex:1;min-height:0;">
+      <div style="font-size:0.62rem;color:#9a9080;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;">Activities</div>
+      ${actRows}
+      <div style="font-size:0.62rem;color:#ff2d55;letter-spacing:0.1em;text-transform:uppercase;margin:8px 0 5px;padding-top:6px;border-top:1px solid #2e2e2e;">TikTok</div>
+      ${ttRows}
+      <div class="leg-row" style="margin-top:6px;padding-top:6px;border-top:1px solid #2e2e2e;">
+        <span style="font-size:12px;">🏠</span>
+        <span>Your Stay</span>
+      </div>
+      <div style="font-size:0.58rem;color:#444;margin-top:6px;">Tap any row to toggle</div>
     </div>
-    <div style="font-size:0.6rem;color:#555;margin-top:8px;">Tap any row to toggle</div>
   `;
 }
 
 function refreshLegend() {
+  if (!legendDiv) return;
+  const mobile = isMobile();
+  legendDiv.style.padding   = legendCollapsed ? '8px 12px' : (mobile ? '10px 12px' : '14px 16px');
+  legendDiv.style.minWidth  = legendCollapsed ? '0'        : (mobile ? '160px'     : '190px');
+  legendDiv.style.maxHeight = legendCollapsed ? 'none'     : (mobile ? '200px'     : '420px');
+  legendDiv.style.fontSize  = mobile ? '0.72rem' : '0.78rem';
   legendDiv.innerHTML = buildLegendHTML();
-  legendDiv.style.minWidth = legendCollapsed ? '0' : '190px';
-  legendDiv.style.padding  = legendCollapsed ? '10px 14px' : '14px 16px';
 }
 
 legendControl.onAdd = function () {
@@ -1507,8 +1518,8 @@ legendControl.onAdd = function () {
   legendDiv.style.cssText = `
     background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;
     padding:14px 16px;font-family:'Inter',sans-serif;font-size:0.78rem;color:#e8e3db;
-    box-shadow:0 4px 20px rgba(0,0,0,0.6);max-height:420px;overflow-y:auto;min-width:190px;
-    transition:padding 0.15s;
+    box-shadow:0 4px 20px rgba(0,0,0,0.6);max-height:420px;min-width:190px;
+    display:flex;flex-direction:column;transition:padding 0.15s,max-height 0.2s;
   `;
   legendDiv.innerHTML = buildLegendHTML();
 
@@ -1530,7 +1541,7 @@ legendControl.onAdd = function () {
     markerGroups[key].forEach(m => {
       groupVisible[key] ? m.addTo(map) : m.remove();
     });
-    legendDiv.innerHTML = buildLegendHTML();
+    refreshLegend();
   });
 
   return legendDiv;
@@ -1578,10 +1589,13 @@ function applyViewMode(mode) {
   if (mode === 'mobile') {
     document.body.classList.add('mobile-mode');
     document.getElementById('view-mode-label').textContent = '🖥️ Desktop View';
+    legendCollapsed = true;
   } else {
     document.body.classList.remove('mobile-mode');
     document.getElementById('view-mode-label').textContent = '📱 Mobile View';
+    legendCollapsed = false;
   }
+  refreshLegend();
   map.invalidateSize();
 }
 
