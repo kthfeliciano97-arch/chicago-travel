@@ -284,6 +284,84 @@ const activities = [
     description: "Michigan Avenue's premier shopping district. Nordstrom, Apple, Bloomingdale's, and dozens of flagship stores in one walkable stretch. Perfect for a Sunday afternoon browse.",
     img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80",
     vibe: "🛍️ Retail Therapy · Walkable"
+  },
+  {
+    id: 23,
+    name: "The Duplex",
+    category: "brunch",
+    tags: ["Black-Owned", "DJ Brunch", "Bottomless"],
+    blackOwned: true,
+    lat: 41.9279,
+    lng: -87.7044,
+    neighborhood: "Logan Square",
+    description: "Chicago's premier Black-owned brunch party experience. Live resident DJs, 90-minute bottomless mimosas, and a menu of elevated comfort food — Upside Down French Toast, Chicken & Waffles, Shrimp & Grits. Lively, inclusive, and always packed. Sat & Sun.",
+    img: "https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=600&q=80",
+    vibe: "🥂 DJ Brunch · Party Vibes · Bottomless"
+  },
+  {
+    id: 24,
+    name: "Batter & Berries",
+    category: "brunch",
+    tags: ["Black-Owned", "French Toast Flight", "Iconic"],
+    blackOwned: true,
+    lat: 41.9326,
+    lng: -87.6529,
+    neighborhood: "Lincoln Park",
+    description: "One of Chicago's most celebrated Black-owned brunch institutions. Their legendary French Toast Flight — Blueberry, Strawberry, Lemon, and Caramel on one platter — is worth the wait alone. Lively atmosphere, live music nights, and serious drink specials.",
+    img: "https://images.unsplash.com/photo-1484723091739-30990068f44e?w=600&q=80",
+    vibe: "🍞 French Toast Flight · Lively · Iconic"
+  },
+  {
+    id: 25,
+    name: "Batter & Berries — South Loop",
+    category: "brunch",
+    tags: ["Black-Owned", "Convenient Location"],
+    blackOwned: true,
+    lat: 41.8503,
+    lng: -87.6285,
+    neighborhood: "South Loop",
+    description: "The South Loop outpost of the legendary Batter & Berries — closer to downtown hotels and the Museum Campus. Same incredible French Toast Flight and soulful brunch menu, easier to get to from the Loop. Great pre-museum fuel.",
+    img: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80",
+    vibe: "🍳 Black-Owned · Downtown Convenient"
+  },
+  {
+    id: 26,
+    name: "Chemistry",
+    category: "brunch",
+    tags: ["Black-Owned", "Upscale", "21+", "Live Music"],
+    blackOwned: true,
+    lat: 41.8007,
+    lng: -87.5937,
+    neighborhood: "Hyde Park",
+    description: "Chicago's most upscale Black-owned brunch experience. Formal dress code, dazzling interiors, made-to-order steaks, buffet-style spread, bottomless mimosas, and live music. 21+ only. A true special occasion brunch that delivers on every level.",
+    img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80",
+    vibe: "✨ Upscale · Live Music · Dress to Impress"
+  },
+  {
+    id: 27,
+    name: "Hubbard Inn",
+    category: "brunch",
+    tags: ["DJ Brunch", "Bottomless", "Tulum Vibes"],
+    blackOwned: false,
+    lat: 41.8903,
+    lng: -87.6293,
+    neighborhood: "River North",
+    description: "Tulum-inspired vibes in the heart of River North. Live DJs every Saturday and Sunday, bottomless mimosas, champagne, or rosé with any entree. Beautiful crowd, beautiful space, and hearty brunch plates including a standout cowboy steak. Great energy all afternoon.",
+    img: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&q=80",
+    vibe: "🌴 Tulum Vibes · DJ · Bottomless"
+  },
+  {
+    id: 28,
+    name: "Chicago Official R&B Brunch",
+    category: "brunch",
+    tags: ["R&B", "Bottomless", "21+", "Weekly"],
+    blackOwned: false,
+    lat: 41.9038,
+    lng: -87.6352,
+    neighborhood: "Division Street",
+    description: "Every Sunday on Division Street — a dedicated R&B brunch and day party with bottomless drinks from 12pm. $25 entry, 21+. Old school R&B, neo-soul, and a crowd that's there to have a real good time. The most consistent Sunday event in the city.",
+    img: "https://images.unsplash.com/photo-1571266028253-6c0b92e6d9b4?w=600&q=80",
+    vibe: "🎶 R&B · Day Party · Every Sunday"
   }
 ];
 
@@ -556,7 +634,8 @@ const categoryColors = {
   food:      '#ff6b6b',
   nightlife: '#4ecdc4',
   outdoors:  '#6bcb77',
-  shopping:  '#ffd166'
+  shopping:  '#ffd166',
+  brunch:    '#ff9a3c'
 };
 
 const categoryEmojis = {
@@ -564,7 +643,8 @@ const categoryEmojis = {
   food:      '🍽️',
   nightlife: '🎵',
   outdoors:  '🌿',
-  shopping:  '🛍️'
+  shopping:  '🛍️',
+  brunch:    '🥂'
 };
 
 const markers = [];
@@ -601,6 +681,37 @@ activities.forEach(act => {
     `);
 
   markers.push({ marker, act });
+});
+
+/* ── BRUNCH GRID ──────────────────────────────── */
+const brunchSpots = activities.filter(a => a.category === 'brunch');
+const brunchGrid = document.getElementById('brunch-grid');
+
+brunchSpots.forEach(spot => {
+  const el = document.createElement('div');
+  el.className = 'brunch-card';
+  el.innerHTML = `
+    <img class="brunch-card-img" src="${spot.img}" alt="${spot.name}" loading="lazy" />
+    <div class="brunch-card-body">
+      <div class="brunch-pills">
+        ${spot.blackOwned ? '<span class="brunch-pill black-owned">✊🏾 Black-Owned</span>' : ''}
+        ${spot.tags.filter(t => t !== 'Black-Owned').map(t => `<span class="brunch-pill">${t}</span>`).join('')}
+      </div>
+      <h3>${spot.name}</h3>
+      <p class="brunch-hood">📍 ${spot.neighborhood}</p>
+      <p>${spot.description}</p>
+      <p class="brunch-vibe">${spot.vibe}</p>
+    </div>
+  `;
+  el.addEventListener('click', () => {
+    map.flyTo([spot.lat, spot.lng], 15, { duration: 1.2 });
+    document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      const found = markers.find(m => m.act.id === spot.id);
+      if (found) found.marker.openPopup();
+    }, 1400);
+  });
+  brunchGrid.appendChild(el);
 });
 
 /* ── CARDS RENDER ─────────────────────────────── */
