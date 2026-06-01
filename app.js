@@ -1422,6 +1422,7 @@ document.getElementById('filters').addEventListener('click', e => {
 /* ── INTERACTIVE LEGEND ───────────────────────── */
 const legendControl = L.control({ position: 'bottomright' });
 let legendDiv;
+let legendCollapsed = false;
 
 const activityLabels = {
   culture:   { label: 'Culture',   emoji: '🎨' },
@@ -1433,37 +1434,55 @@ const activityLabels = {
 };
 
 const ttLabels = {
-  'tt-brunch':      { label: 'TikTok - Brunch',       color: ttColors.brunch,      emoji: ttEmojis.brunch },
-  'tt-nightlife':   { label: 'TikTok - Nightlife',     color: ttColors.nightlife,   emoji: ttEmojis.nightlife },
-  'tt-lunch':       { label: 'TikTok - Lunch',         color: ttColors.lunch,       emoji: ttEmojis.lunch },
-  'tt-chicagoeats': { label: 'TikTok - Chicago Eats',  color: ttColors.chicagoeats, emoji: ttEmojis.chicagoeats },
+  'tt-brunch':      { label: 'TikTok - Brunch',      color: ttColors.brunch,      emoji: ttEmojis.brunch },
+  'tt-nightlife':   { label: 'TikTok - Nightlife',    color: ttColors.nightlife,   emoji: ttEmojis.nightlife },
+  'tt-lunch':       { label: 'TikTok - Lunch',        color: ttColors.lunch,       emoji: ttEmojis.lunch },
+  'tt-chicagoeats': { label: 'TikTok - Chicago Eats', color: ttColors.chicagoeats, emoji: ttEmojis.chicagoeats },
 };
 
 function buildLegendHTML() {
+  if (legendCollapsed) {
+    return `
+      <button data-action="toggle-legend" style="
+        display:flex;align-items:center;gap:7px;
+        background:none;border:none;cursor:pointer;
+        font-family:'Syne',sans-serif;font-weight:700;font-size:0.8rem;
+        color:#F5A623;letter-spacing:0.05em;padding:2px 0;white-space:nowrap;
+      ">
+        <span>🗺️ Layers</span>
+        <span style="font-size:0.65rem;color:#9a9080;">▲ show</span>
+      </button>`;
+  }
+
   const actRows = Object.entries(activityLabels).map(([key, { label, emoji }]) => {
-    const color = categoryColors[key];
-    const dim = groupVisible[key] ? '' : 'opacity:0.35;';
+    const color  = categoryColors[key];
+    const dim    = groupVisible[key] ? '' : 'opacity:0.35;';
     const strike = groupVisible[key] ? '' : 'text-decoration:line-through;';
     return `
-      <div class="leg-row" data-group="${key}" style="${dim}cursor:pointer;" title="Click to toggle">
+      <div class="leg-row" data-group="${key}" style="${dim}cursor:pointer;" title="Toggle layer">
         <span style="width:13px;height:13px;background:${color};border-radius:50%;display:inline-block;flex-shrink:0;"></span>
         <span style="${strike}">${emoji} ${label}</span>
       </div>`;
   }).join('');
 
   const ttRows = Object.entries(ttLabels).map(([key, { label, color, emoji }]) => {
-    const dim = groupVisible[key] ? '' : 'opacity:0.35;';
+    const dim    = groupVisible[key] ? '' : 'opacity:0.35;';
     const strike = groupVisible[key] ? '' : 'text-decoration:line-through;';
     return `
-      <div class="leg-row" data-group="${key}" style="${dim}cursor:pointer;" title="Click to toggle">
+      <div class="leg-row" data-group="${key}" style="${dim}cursor:pointer;" title="Toggle layer">
         <span style="width:13px;height:13px;background:${color};border-radius:3px;display:inline-block;flex-shrink:0;border:1px solid rgba(255,255,255,0.3);"></span>
         <span style="${strike}">${emoji} ${label}</span>
       </div>`;
   }).join('');
 
   return `
-    <div style="font-weight:700;margin-bottom:10px;color:#F5A623;font-family:'Syne',sans-serif;font-size:0.8rem;letter-spacing:0.05em;">
-      MAP LEGEND
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+      <span style="font-weight:700;color:#F5A623;font-family:'Syne',sans-serif;font-size:0.8rem;letter-spacing:0.05em;">MAP LEGEND</span>
+      <button data-action="toggle-legend" style="
+        background:rgba(255,255,255,0.07);border:1px solid #2e2e2e;border-radius:6px;
+        color:#9a9080;font-size:0.68rem;cursor:pointer;padding:3px 8px;
+        font-family:'Inter',sans-serif;white-space:nowrap;
+      " title="Hide legend">▼ hide</button>
     </div>
     <div style="font-size:0.65rem;color:#9a9080;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Activities</div>
     ${actRows}
@@ -1473,8 +1492,14 @@ function buildLegendHTML() {
       <span style="font-size:13px;">🏠</span>
       <span>Your Stay</span>
     </div>
-    <div style="font-size:0.6rem;color:#555;margin-top:8px;">Click any row to toggle</div>
+    <div style="font-size:0.6rem;color:#555;margin-top:8px;">Tap any row to toggle</div>
   `;
+}
+
+function refreshLegend() {
+  legendDiv.innerHTML = buildLegendHTML();
+  legendDiv.style.minWidth = legendCollapsed ? '0' : '190px';
+  legendDiv.style.padding  = legendCollapsed ? '10px 14px' : '14px 16px';
 }
 
 legendControl.onAdd = function () {
@@ -1483,6 +1508,7 @@ legendControl.onAdd = function () {
     background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;
     padding:14px 16px;font-family:'Inter',sans-serif;font-size:0.78rem;color:#e8e3db;
     box-shadow:0 4px 20px rgba(0,0,0,0.6);max-height:420px;overflow-y:auto;min-width:190px;
+    transition:padding 0.15s;
   `;
   legendDiv.innerHTML = buildLegendHTML();
 
@@ -1490,6 +1516,13 @@ legendControl.onAdd = function () {
   L.DomEvent.disableScrollPropagation(legendDiv);
 
   legendDiv.addEventListener('click', e => {
+    /* collapse / expand toggle */
+    if (e.target.closest('[data-action="toggle-legend"]')) {
+      legendCollapsed = !legendCollapsed;
+      refreshLegend();
+      return;
+    }
+    /* layer toggle rows */
     const row = e.target.closest('.leg-row[data-group]');
     if (!row) return;
     const key = row.dataset.group;
