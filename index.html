@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi-Town Guide — Young Professionals Edition</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Your Weekend Starts Here</p>
+      <h1>Chi-Town <span class="accent">Guide</span></h1>
+      <p class="hero-sub">The insider's playbook for young Black professionals visiting Chicago — curated vibes, safe spots, unforgettable experiences.</p>
+      <div class="hero-ctas">
+        <a href="#events" class="btn-primary">See June 18–22 Events</a>
+        <a href="#activities" class="btn-secondary">Browse Activities</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">↓ scroll</div>
+  </header>
+
+  <!-- INTRO STRIP -->
+  <section class="intro-strip">
+    <div class="strip-item"><span class="strip-icon">🗺️</span><span>Interactive Map</span></div>
+    <div class="strip-item"><span class="strip-icon">✅</span><span>Safe &amp; Vetted Spots</span></div>
+    <div class="strip-item"><span class="strip-icon">✊🏾</span><span>Black-Owned &amp; Inclusive</span></div>
+    <div class="strip-item"><span class="strip-icon">🌆</span><span>20+ Curated Activities</span></div>
+  </section>
+
+  <!-- JUNETEENTH BANNER -->
+  <section class="juneteenth-banner">
+    <div class="container">
+      <div class="jb-inner">
+        <div class="jb-text">
+          <p class="jb-eyebrow">June 18–22, 2026 · Your Trip Dates</p>
+          <h2>You're visiting during <span class="accent">Juneteenth Weekend</span></h2>
+          <p>This is the most culturally significant weekend in Chicago's calendar — and 2026 is historic. The Obama Presidential Center opens its doors for the very first time. Black culture, music, food, and community will be everywhere you look.</p>
+        </div>
+        <div class="jb-badge">✊🏾<br/><span>Juneteenth<br/>2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP SECTION -->
+  <section class="map-section" id="map-section">
+    <div class="container">
+      <h2 class="section-title">The <span class="accent">Map</span></h2>
+      <p class="section-sub">Every spot below is pinned. Click a marker for details.</p>
+      <div id="map"></div>
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section class="activities-section" id="activities">
+    <div class="container">
+      <h2 class="section-title">Top <span class="accent">Activities</span></h2>
+      <p class="section-sub">Filter by vibe and find your perfect Chicago moment.</p>
+
+      <!-- FILTER TABS -->
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="culture">Culture</button>
+        <button class="filter-btn" data-filter="food">Food &amp; Drinks</button>
+        <button class="filter-btn" data-filter="nightlife">Nightlife</button>
+        <button class="filter-btn" data-filter="outdoors">Outdoors</button>
+        <button class="filter-btn" data-filter="shopping">Shopping</button>
+      </div>
+
+      <!-- CARDS GRID -->
+      <div class="cards-grid" id="cards-grid"></div>
+    </div>
+  </section>
+
+  <!-- EVENTS SECTION -->
+  <section class="events-section" id="events">
+    <div class="container">
+      <h2 class="section-title">Events During <span class="accent">Your Trip</span></h2>
+      <p class="section-sub">June 18–22, 2026 — Juneteenth Weekend in Chicago. Here's everything happening.</p>
+
+      <!-- DAY TABS -->
+      <div class="day-tabs" id="day-tabs">
+        <button class="day-tab active" data-day="all">All Days</button>
+        <button class="day-tab" data-day="thu">Thu Jun 18</button>
+        <button class="day-tab" data-day="fri">Fri Jun 19</button>
+        <button class="day-tab" data-day="sat">Sat Jun 20</button>
+        <button class="day-tab" data-day="sun">Sun Jun 21</button>
+        <button class="day-tab" data-day="mon">Mon Jun 22</button>
+      </div>
+
+      <div class="events-list" id="events-list"></div>
+    </div>
+  </section>
+
+  <!-- NEIGHBORHOODS -->
+  <section class="neighborhoods-section">
+    <div class="container">
+      <h2 class="section-title">Know the <span class="accent">Neighborhoods</span></h2>
+      <p class="section-sub">Chicago is a city of distinct neighborhoods — here's a quick guide for out-of-towners.</p>
+      <div class="hoods-grid">
+        <div class="hood-card">
+          <div class="hood-emoji">🏙️</div>
+          <h3>The Loop</h3>
+          <p>Downtown core. Architecture, Millennium Park, world-class museums. Great for daytime exploring.</p>
+        </div>
+        <div class="hood-card">
+          <div class="hood-emoji">🎶</div>
+          <h3>Bronzeville</h3>
+          <p>Historic Black neighborhood. Rich jazz and blues history, murals, soul food, and community pride.</p>
+        </div>
+        <div class="hood-card">
+          <div class="hood-emoji">🍕</div>
+          <h3>Wicker Park</h3>
+          <p>Trendy, artsy, and walkable. Boutiques, brunch spots, live music venues, and nightlife.</p>
+        </div>
+        <div class="hood-card">
+          <div class="hood-emoji">🌊</div>
+          <h3>South Loop</h3>
+          <p>Lakefront access, Museum Campus, upscale dining, and a growing young professional scene.</p>
+        </div>
+        <div class="hood-card">
+          <div class="hood-emoji">🛍️</div>
+          <h3>Magnificent Mile</h3>
+          <p>Flagship stores, luxury hotels, deep-dish restaurants. Michigan Avenue energy all day.</p>
+        </div>
+        <div class="hood-card">
+          <div class="hood-emoji">🏖️</div>
+          <h3>Hyde Park</h3>
+          <p>Home of U of C and the Obama Presidential Center. Museums, culture, and lakefront trails.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPS SECTION -->
+  <section class="tips-section">
+    <div class="container">
+      <h2 class="section-title">Pro <span class="accent">Tips</span></h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <span class="tip-num">01</span>
+          <h3>Getting Around</h3>
+          <p>Use the CTA "L" train for the Loop and North Side. Rideshare for South Side spots at night. The Divvy bike share is great along the lakefront trail.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">02</span>
+          <h3>Best Time to Visit</h3>
+          <p>June–September is peak season — festivals every weekend. Spring and fall offer great deals and comfortable temps. Avoid February unless you love cold.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">03</span>
+          <h3>Stay Safe</h3>
+          <p>Stick to the recommended neighborhoods listed here. Use rideshare at night when traveling between areas. Chicago is very safe for tourists in these zones.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">04</span>
+          <h3>Where to Stay</h3>
+          <p>The Loop and Magnificent Mile are the most convenient for tourists. South Loop puts you near the museum campus and lakefront. Book early for summer weekends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-logo">Chi-Town <span class="accent">Guide</span></p>
+      <p class="footer-sub">Made with love for the culture. Chicago, IL.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
