@@ -566,13 +566,13 @@ const events = [
 
 /* ── EVENTS RENDER ────────────────────────────── */
 function badgeHTML(type) {
-  const map = {
+  const badgeTypes = {
     free: ['badge-free', 'FREE'],
     ticketed: ['badge-ticketed', 'TICKETED'],
     historic: ['badge-historic', 'HISTORIC'],
     mustdo: ['badge-mustdo', "DON'T MISS"]
   };
-  const [cls, label] = map[type] || ['badge-free', type];
+  const [cls, label] = badgeTypes[type] || ['badge-free', type];
   return `<span class="event-badge ${cls}">${label}</span>`;
 }
 
