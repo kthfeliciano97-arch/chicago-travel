@@ -49,6 +49,29 @@
     </div>
   </section>
 
+  <!-- CHICAGO NOW — live news feed -->
+  <section class="chicago-now-section" id="chicago-now">
+    <div class="container">
+      <div class="cn-header">
+        <div>
+          <p class="cn-eyebrow"><span class="cn-live-dot"></span> Updated Daily</p>
+          <h2 class="section-title">Chicago <span class="accent">Now</span></h2>
+          <p class="section-sub">What's happening in the city right now — news, events, and culture.</p>
+        </div>
+        <p class="cn-source">via Block Club Chicago</p>
+      </div>
+      <div class="cn-grid" id="cn-grid">
+        <!-- skeleton cards shown until JS loads -->
+        <div class="cn-skeleton"></div>
+        <div class="cn-skeleton"></div>
+        <div class="cn-skeleton"></div>
+        <div class="cn-skeleton"></div>
+        <div class="cn-skeleton"></div>
+        <div class="cn-skeleton"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- MAP SECTION -->
   <section class="map-section" id="map-section">
     <div class="container">
@@ -91,6 +114,7 @@
           </p>
           <h2 class="section-title">Most <span class="accent">Talked About</span></h2>
           <p class="section-sub">The spots everyone is posting. Ranked 1–10 by buzz, vibes, and food quality.</p>
+          <p class="tt-last-updated" id="tt-last-updated"></p>
         </div>
       </div>
 
@@ -289,6 +313,9 @@
 
   <!-- MOBILE BOTTOM NAV -->
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="#chicago-now"  class="mob-nav-item" data-section="chicago-now">
+      <span class="mob-nav-icon">📰</span><span class="mob-nav-label">Now</span>
+    </a>
     <a href="#map-section"  class="mob-nav-item" data-section="map-section">
       <span class="mob-nav-icon">🗺️</span><span class="mob-nav-label">Map</span>
     </a>

@@ -1,0 +1,87 @@
+name: Daily Chicago Content Update
+
+on:
+  schedule:
+    # 8:00 AM Central Time (UTC-5/UTC-6) → 13:00 UTC / 14:00 UTC
+    - cron: '0 13 * * *'
+  workflow_dispatch: # allow manual trigger from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Fetch Chicago news from Block Club Chicago RSS
+        run: |
+          node -e "
+          const https = require('https');
+          const fs   = require('fs');
+
+          const RSS_URL = encodeURIComponent('https://blockclubchicago.org/feed/');
+          const API_URL = \`https://api.rss2json.com/v1/api.json?rss_url=\${RSS_URL}&count=8\`;
+
+          https.get(API_URL, res => {
+            let raw = '';
+            res.on('data', chunk => raw += chunk);
+            res.on('end', () => {
+              try {
+                const parsed = JSON.parse(raw);
+                const items = (parsed.items || []).map(item => ({
+                  title:       item.title || '',
+                  link:        item.link  || '',
+                  pubDate:     item.pubDate || '',
+                  description: (item.description || '').replace(/<[^>]+>/g, '').slice(0, 280).trim(),
+                  thumbnail:   item.thumbnail || ''
+                }));
+
+                const output = {
+                  fetchedAt: new Date().toISOString().split('T')[0],
+                  status:    parsed.status || 'ok',
+                  items
+                };
+
+                fs.writeFileSync('data/news.json', JSON.stringify(output, null, 2));
+                console.log('Saved', items.length, 'news items from Block Club Chicago');
+              } catch (err) {
+                console.error('Parse error:', err.message);
+                process.exit(1);
+              }
+            });
+          }).on('error', err => {
+            console.error('Fetch error:', err.message);
+            process.exit(1);
+          });
+          "
+
+      - name: Update TikTok rankings lastUpdated date
+        run: |
+          node -e "
+          const fs   = require('fs');
+          const data = JSON.parse(fs.readFileSync('data/tiktok.json', 'utf8'));
+          const today = new Date().toISOString().split('T')[0];
+          if (data.lastUpdated !== today) {
+            data.lastUpdated = today;
+            fs.writeFileSync('data/tiktok.json', JSON.stringify(data, null, 2));
+            console.log('Updated lastUpdated to', today);
+          } else {
+            console.log('lastUpdated already current');
+          }
+          "
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/news.json data/tiktok.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: daily content refresh $(date -u +%Y-%m-%d)"
+            git push
+          fi

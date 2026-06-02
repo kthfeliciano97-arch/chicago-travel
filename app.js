@@ -276,7 +276,7 @@ function renderTikTok(cat) {
   });
 }
 
-renderTikTok('brunch');
+// renderTikTok('brunch') is called inside initDynamicContent() below
 
 document.getElementById('tt-tabs').addEventListener('click', e => {
   const tab = e.target.closest('.tt-tab');
@@ -1614,7 +1614,7 @@ document.getElementById('view-mode-btn').addEventListener('click', () => {
 initViewMode();
 
 /* ── BOTTOM NAV ACTIVE STATE ──────────────────── */
-const navSections = ['map-section','activities','brunch','events','tiktok'];
+const navSections = ['chicago-now','map-section','activities','brunch','events','tiktok'];
 const navItems    = document.querySelectorAll('.mob-nav-item');
 
 function updateActiveNav() {
@@ -1630,3 +1630,80 @@ function updateActiveNav() {
 
 window.addEventListener('scroll', updateActiveNav, { passive: true });
 updateActiveNav();
+
+/* ── DYNAMIC CONTENT LOADER ───────────────────────── */
+
+function formatNewsDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  if (isNaN(d)) return '';
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function renderChicagoNews(items) {
+  const grid = document.getElementById('cn-grid');
+  if (!items || !items.length) {
+    grid.innerHTML = '<p style="color:var(--text-muted);grid-column:1/-1;text-align:center;padding:24px 0;">No news available right now — check back soon.</p>';
+    return;
+  }
+  grid.innerHTML = items.slice(0, 6).map(item => {
+    const thumb = item.thumbnail
+      ? `<img class="cn-card-img" src="${item.thumbnail}" alt="" loading="lazy" onerror="this.style.display='none'" />`
+      : `<div class="cn-card-img cn-card-img-placeholder"></div>`;
+    const date  = formatNewsDate(item.pubDate);
+    const desc  = item.description ? item.description.slice(0, 200) + (item.description.length > 200 ? '…' : '') : '';
+    return `
+      <a class="cn-card" href="${item.link}" target="_blank" rel="noopener noreferrer">
+        ${thumb}
+        <div class="cn-card-body">
+          ${date ? `<span class="cn-card-date">${date}</span>` : ''}
+          <h3 class="cn-card-title">${item.title}</h3>
+          ${desc ? `<p class="cn-card-desc">${desc}</p>` : ''}
+        </div>
+        <span class="cn-card-arrow">↗</span>
+      </a>`;
+  }).join('');
+}
+
+async function loadChicagoNews() {
+  try {
+    const res  = await fetch('data/news.json?v=' + Date.now());
+    if (!res.ok) throw new Error('news fetch failed');
+    const data = await res.json();
+    renderChicagoNews(data.items || []);
+  } catch {
+    const section = document.getElementById('chicago-now');
+    if (section) section.style.display = 'none';
+  }
+}
+
+async function loadTikTokData() {
+  try {
+    const res  = await fetch('data/tiktok.json?v=' + Date.now());
+    if (!res.ok) throw new Error('tiktok fetch failed');
+    const data = await res.json();
+    // Override inline fallback with fresh data
+    ['brunch', 'nightlife', 'lunch', 'chicagoeats'].forEach(cat => {
+      if (data[cat] && data[cat].length) tiktokSpots[cat] = data[cat];
+    });
+    // Show lastUpdated badge
+    if (data.lastUpdated) {
+      const el = document.getElementById('tt-last-updated');
+      if (el) {
+        const d = new Date(data.lastUpdated + 'T12:00:00');
+        const label = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        el.textContent = '🔄 Rankings verified ' + label;
+        el.style.display = 'inline-block';
+      }
+    }
+  } catch {
+    // Fall back to inline data silently
+  }
+  renderTikTok('brunch');
+}
+
+async function initDynamicContent() {
+  await Promise.all([loadTikTokData(), loadChicagoNews()]);
+}
+
+initDynamicContent();
