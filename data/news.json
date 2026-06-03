@@ -1,48 +1,5 @@
 {
-  "fetchedAt": "2026-06-02",
-  "status": "ok",
-  "items": [
-    {
-      "title": "Obama Presidential Center Grand Opening Set for June 18 — What to Expect",
-      "link": "https://blockclubchicago.org",
-      "pubDate": "2026-06-02 09:00:00",
-      "description": "The Obama Presidential Center's grand opening ceremonies kick off Juneteenth weekend with a dedication on the John Lewis Plaza. Tickets for the museum are now live — grab yours before they sell out.",
-      "thumbnail": "https://images.unsplash.com/photo-1568096889942-6eedde686635?w=600&q=80"
-    },
-    {
-      "title": "Taste of Randolph Returns for Its 29th Year — Full Lineup Announced",
-      "link": "https://blockclubchicago.org",
-      "pubDate": "2026-06-01 12:00:00",
-      "description": "Chicago Restaurant Row's beloved outdoor food festival returns June 19–21 with two live music stages, 30+ restaurants, and craft cocktails. Free admission all weekend.",
-      "thumbnail": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80"
-    },
-    {
-      "title": "Juneteenth Weekend in Chicago: 20+ Events to Know About",
-      "link": "https://blockclubchicago.org",
-      "pubDate": "2026-06-01 08:00:00",
-      "description": "From the DuSable Museum's free celebration to the R&B concert at Wintrust Arena, this is the most packed Juneteenth weekend Chicago has ever seen. Full event guide inside.",
-      "thumbnail": "https://images.unsplash.com/photo-1594818379496-da1e345b0ded?w=600&q=80"
-    },
-    {
-      "title": "Chicago Pride Fest Schedule Released — What's New This Year",
-      "link": "https://blockclubchicago.org",
-      "pubDate": "2026-05-31 14:00:00",
-      "description": "Pride Fest on Halsted Street runs June 20–21 with headliner performances, drag shows, and an expanded food and vendor village. The weekend overlaps with Juneteenth for a historic double celebration.",
-      "thumbnail": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=600&q=80"
-    },
-    {
-      "title": "Chicago's Hottest New Restaurants of Summer 2026",
-      "link": "https://blockclubchicago.org",
-      "pubDate": "2026-05-30 10:00:00",
-      "description": "The West Loop keeps getting hotter with three new openings this month alone. Plus, a beloved Bronzeville spot just announced a major expansion and two new brunch menus have gone viral.",
-      "thumbnail": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80"
-    },
-    {
-      "title": "Millennium Park Summer Concert Series — Full 2026 Schedule",
-      "link": "https://blockclubchicago.org",
-      "pubDate": "2026-05-29 09:00:00",
-      "description": "Free outdoor concerts return every Monday and Wednesday this summer at the Jay Pritzker Pavilion. Sheila E. headlines Juneteenth Monday on June 22 — one of the most anticipated shows of the year.",
-      "thumbnail": "https://images.unsplash.com/photo-1461595383984-b44e57d9e66e?w=600&q=80"
-    }
-  ]
+  "fetchedAt": "2026-06-03",
+  "status": "error",
+  "items": []
 }

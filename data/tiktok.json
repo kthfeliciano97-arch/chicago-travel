@@ -1,252 +1,533 @@
 {
-  "lastUpdated": "2026-06-02",
+  "lastUpdated": "2026-06-03",
   "source": "TikTok & social media monitoring",
   "brunch": [
     {
-      "rank": 1, "name": "Batter & Berries", "neighborhood": "Lincoln Park",
+      "rank": 1,
+      "name": "Batter & Berries",
+      "neighborhood": "Lincoln Park",
       "why": "The French Toast Flight is one of the most photographed dishes in all of Chicago. Four flavors on one plate — Blueberry, Strawberry, Lemon, and Caramel. Everyone who visits posts it.",
-      "mustOrder": "French Toast Flight", "blackOwned": true,
-      "pills": ["Most Photographed Dish", "Black-Owned", "Weekend Waits"]
+      "mustOrder": "French Toast Flight",
+      "blackOwned": true,
+      "pills": [
+        "Most Photographed Dish",
+        "Black-Owned",
+        "Weekend Waits"
+      ]
     },
     {
-      "rank": 2, "name": "The Duplex", "neighborhood": "Logan Square",
+      "rank": 2,
+      "name": "The Duplex",
+      "neighborhood": "Logan Square",
       "why": "Chicago's hottest Black-owned brunch party. Resident DJs, bottomless mimosas, and a crowd that's dressed up and ready. Saturdays here look like a music video.",
-      "mustOrder": "Chicken & Waffles + Bottomless Mimosas", "blackOwned": true,
-      "pills": ["DJ Brunch", "Black-Owned", "Party Vibes"]
+      "mustOrder": "Chicken & Waffles + Bottomless Mimosas",
+      "blackOwned": true,
+      "pills": [
+        "DJ Brunch",
+        "Black-Owned",
+        "Party Vibes"
+      ]
     },
     {
-      "rank": 3, "name": "Brûlée Chicago", "neighborhood": "South Loop",
+      "rank": 3,
+      "name": "Brûlée Chicago",
+      "neighborhood": "South Loop",
       "why": "Went viral on TikTok for their torched crème brûlée French toast and theatrical tableside presentations. The visual factor is off the charts.",
-      "mustOrder": "Crème Brûlée French Toast", "blackOwned": true,
-      "pills": ["Viral Dish", "Tableside Theater", "Black-Owned"]
+      "mustOrder": "Crème Brûlée French Toast",
+      "blackOwned": true,
+      "pills": [
+        "Viral Dish",
+        "Tableside Theater",
+        "Black-Owned"
+      ]
     },
     {
-      "rank": 4, "name": "Chemistry", "neighborhood": "Hyde Park",
+      "rank": 4,
+      "name": "Chemistry",
+      "neighborhood": "Hyde Park",
       "why": "21+ upscale buffet brunch with live music, made-to-order steaks, and interiors that beg to be on camera. The most elevated brunch experience on the South Side.",
-      "mustOrder": "Made-to-Order Steak + Bottomless Mimosas", "blackOwned": true,
-      "pills": ["21+", "Live Music", "Upscale", "Black-Owned"]
+      "mustOrder": "Made-to-Order Steak + Bottomless Mimosas",
+      "blackOwned": true,
+      "pills": [
+        "21+",
+        "Live Music",
+        "Upscale",
+        "Black-Owned"
+      ]
     },
     {
-      "rank": 5, "name": "Luella's Southern Kitchen", "neighborhood": "Lincoln Square",
+      "rank": 5,
+      "name": "Luella's Southern Kitchen",
+      "neighborhood": "Lincoln Square",
       "why": "Comfort food done beautifully. Known for their hot chicken, shrimp & grits, and a Southern hospitality vibe that keeps people coming back and posting.",
-      "mustOrder": "Hot Chicken Biscuit", "blackOwned": true,
-      "pills": ["Soul Food", "Black-Owned", "Comfort Classics"]
+      "mustOrder": "Hot Chicken Biscuit",
+      "blackOwned": true,
+      "pills": [
+        "Soul Food",
+        "Black-Owned",
+        "Comfort Classics"
+      ]
     },
     {
-      "rank": 6, "name": "Beatnik on the River", "neighborhood": "West Loop",
+      "rank": 6,
+      "name": "Beatnik on the River",
+      "neighborhood": "West Loop",
       "why": "Mediterranean brunch on the Chicago River with stunning water views and a globally inspired menu. The aesthetic alone earns every post.",
-      "mustOrder": "Shakshuka + River View Table", "blackOwned": false,
-      "pills": ["Riverfront Views", "Mediterranean", "Aesthetic"]
+      "mustOrder": "Shakshuka + River View Table",
+      "blackOwned": false,
+      "pills": [
+        "Riverfront Views",
+        "Mediterranean",
+        "Aesthetic"
+      ]
     },
     {
-      "rank": 7, "name": "Hubbard Inn", "neighborhood": "River North",
+      "rank": 7,
+      "name": "Hubbard Inn",
+      "neighborhood": "River North",
       "why": "Tulum-inspired decor, live DJ every Saturday and Sunday, bottomless options, and a sleek crowd. One of the most posted brunch spots in the city.",
-      "mustOrder": "Cowboy Steak & Eggs", "blackOwned": false,
-      "pills": ["DJ", "Bottomless", "Tulum Vibes"]
+      "mustOrder": "Cowboy Steak & Eggs",
+      "blackOwned": false,
+      "pills": [
+        "DJ",
+        "Bottomless",
+        "Tulum Vibes"
+      ]
     },
     {
-      "rank": 8, "name": "The Brunchery", "neighborhood": "Lincoln Park",
+      "rank": 8,
+      "name": "The Brunchery",
+      "neighborhood": "Lincoln Park",
       "why": "One of Chicago's most reviewed brunch spots. Consistently packed, consistently posting-worthy, with creative cocktails and elevated diner food.",
-      "mustOrder": "Lobster Benedict", "blackOwned": true,
-      "pills": ["Black-Owned", "Creative Cocktails", "Always Buzzing"]
+      "mustOrder": "Lobster Benedict",
+      "blackOwned": true,
+      "pills": [
+        "Black-Owned",
+        "Creative Cocktails",
+        "Always Buzzing"
+      ]
     },
     {
-      "rank": 9, "name": "Spoken Cafe", "neighborhood": "Bronzeville",
+      "rank": 9,
+      "name": "Spoken Cafe",
+      "neighborhood": "Bronzeville",
       "why": "Community coffee shop turned cultural hub. Live music nights, art on the walls, and a brunch menu rooted in the neighborhood's soul. A Bronzeville institution.",
-      "mustOrder": "House Coffee + Weekend Brunch Plate", "blackOwned": true,
-      "pills": ["Black-Owned", "Community Spot", "Live Music"]
+      "mustOrder": "House Coffee + Weekend Brunch Plate",
+      "blackOwned": true,
+      "pills": [
+        "Black-Owned",
+        "Community Spot",
+        "Live Music"
+      ]
     },
     {
-      "rank": 10, "name": "Virtue Restaurant", "neighborhood": "Hyde Park",
+      "rank": 10,
+      "name": "Virtue Restaurant",
+      "neighborhood": "Hyde Park",
       "why": "James Beard Award-nominated and Southern as it gets. Chef Erick Williams' brunch draws food writers, celebrities, and anyone who knows good food.",
-      "mustOrder": "Fried Chicken + Honey Biscuits", "blackOwned": true,
-      "pills": ["James Beard", "Black-Owned", "Celebrity Approved"]
+      "mustOrder": "Fried Chicken + Honey Biscuits",
+      "blackOwned": true,
+      "pills": [
+        "James Beard",
+        "Black-Owned",
+        "Celebrity Approved"
+      ]
     }
   ],
   "nightlife": [
     {
-      "rank": 1, "name": "TAO Chicago", "neighborhood": "River North",
+      "rank": 1,
+      "name": "TAO Chicago",
+      "neighborhood": "River North",
       "why": "A pan-Asian mega-club in a historic building. Celebrity sightings, bottle service, and an atmosphere that looks cinematic on camera. The most posted nightlife spot in Chicago.",
-      "mustOrder": "Sake Bottle Service", "blackOwned": false,
-      "pills": ["Celebrity Spot", "Bottle Service", "Mega-Club"]
+      "mustOrder": "Sake Bottle Service",
+      "blackOwned": false,
+      "pills": [
+        "Celebrity Spot",
+        "Bottle Service",
+        "Mega-Club"
+      ]
     },
     {
-      "rank": 2, "name": "HUE Chicago", "neighborhood": "River North",
+      "rank": 2,
+      "name": "HUE Chicago",
+      "neighborhood": "River North",
       "why": "The go-to spot for young Black professionals in Chicago. Hip-hop, R&B, diverse crowd, and bottle deals that make every Saturday feel like a celebration.",
-      "mustOrder": "VIP Section + Bottle", "blackOwned": false,
-      "pills": ["Hip-Hop & R&B", "Diverse Crowd", "Saturday Night"]
+      "mustOrder": "VIP Section + Bottle",
+      "blackOwned": false,
+      "pills": [
+        "Hip-Hop & R&B",
+        "Diverse Crowd",
+        "Saturday Night"
+      ]
     },
     {
-      "rank": 3, "name": "Spybar", "neighborhood": "River North",
+      "rank": 3,
+      "name": "Spybar",
+      "neighborhood": "River North",
       "why": "Underground basement club under the L tracks. World-class house DJs, a crowd that actually dances, and a sound system that hits. Open until 4AM on weekends.",
-      "mustOrder": "Dance Floor + Late Night Energy", "blackOwned": false,
-      "pills": ["House DJs", "Open Until 4AM", "Underground"]
+      "mustOrder": "Dance Floor + Late Night Energy",
+      "blackOwned": false,
+      "pills": [
+        "House DJs",
+        "Open Until 4AM",
+        "Underground"
+      ]
     },
     {
-      "rank": 4, "name": "Boleo Rooftop Bar", "neighborhood": "The Loop",
+      "rank": 4,
+      "name": "Boleo Rooftop Bar",
+      "neighborhood": "The Loop",
       "why": "Rooftop Latin bar atop the Kimpton Gray Hotel. Skyline views, craft cocktails, live DJs on weekends, and a crowd that's upscale and diverse. Pure Chicago skyline content.",
-      "mustOrder": "Signature Margarita + Skyline View", "blackOwned": false,
-      "pills": ["Rooftop", "Skyline Views", "Latin Vibes"]
+      "mustOrder": "Signature Margarita + Skyline View",
+      "blackOwned": false,
+      "pills": [
+        "Rooftop",
+        "Skyline Views",
+        "Latin Vibes"
+      ]
     },
     {
-      "rank": 5, "name": "Cindy's Rooftop", "neighborhood": "The Loop",
+      "rank": 5,
+      "name": "Cindy's Rooftop",
+      "neighborhood": "The Loop",
       "why": "Perched atop the Chicago Athletic Association Hotel overlooking Millennium Park. The view of the Bean and the lake is unlike anything else. The most photographed rooftop in Chicago.",
-      "mustOrder": "Any cocktail + The View", "blackOwned": false,
-      "pills": ["Most Photographed View", "Rooftop", "Upscale"]
+      "mustOrder": "Any cocktail + The View",
+      "blackOwned": false,
+      "pills": [
+        "Most Photographed View",
+        "Rooftop",
+        "Upscale"
+      ]
     },
     {
-      "rank": 6, "name": "Goodnight John Boy", "neighborhood": "Pilsen",
+      "rank": 6,
+      "name": "Goodnight John Boy",
+      "neighborhood": "Pilsen",
       "why": "Went viral for its disco-throwback energy, mirror balls, and inclusive crowd. Unpretentious, fun, and the kind of place where everyone ends up dancing.",
-      "mustOrder": "Disco Fries + Dance Floor", "blackOwned": false,
-      "pills": ["Disco Vibes", "Viral TikTok", "Dance Night"]
+      "mustOrder": "Disco Fries + Dance Floor",
+      "blackOwned": false,
+      "pills": [
+        "Disco Vibes",
+        "Viral TikTok",
+        "Dance Night"
+      ]
     },
     {
-      "rank": 7, "name": "Green Mill Jazz Club", "neighborhood": "Uptown",
+      "rank": 7,
+      "name": "Green Mill Jazz Club",
+      "neighborhood": "Uptown",
       "why": "Operating since 1907. Authentic underground jazz, Al Capone's old booth, and a speakeasy feel you can't manufacture. One of the most atmospheric nightlife spots in America.",
-      "mustOrder": "Whiskey Old Fashioned + Front Row Seat", "blackOwned": false,
-      "pills": ["Historic", "Live Jazz", "Speakeasy Feel"]
+      "mustOrder": "Whiskey Old Fashioned + Front Row Seat",
+      "blackOwned": false,
+      "pills": [
+        "Historic",
+        "Live Jazz",
+        "Speakeasy Feel"
+      ]
     },
     {
-      "rank": 8, "name": "Soho House Chicago", "neighborhood": "West Loop",
+      "rank": 8,
+      "name": "Soho House Chicago",
+      "neighborhood": "West Loop",
       "why": "The rooftop pool bar is Chicago's most exclusive summer scene. Creative crowd, beautiful people, and a skyline view that makes every shot look editorial.",
-      "mustOrder": "Pool Bar Cocktail", "blackOwned": false,
-      "pills": ["Exclusive", "Rooftop Pool", "Creative Crowd"]
+      "mustOrder": "Pool Bar Cocktail",
+      "blackOwned": false,
+      "pills": [
+        "Exclusive",
+        "Rooftop Pool",
+        "Creative Crowd"
+      ]
     },
     {
-      "rank": 9, "name": "Hubbard Inn", "neighborhood": "River North",
+      "rank": 9,
+      "name": "Hubbard Inn",
+      "neighborhood": "River North",
       "why": "Three floors of nightlife in one building — rooftop bar, main floor lounge, and Key Club nightclub. One venue for the whole night, beloved by the young professional crowd.",
-      "mustOrder": "Whiskey at the Bar + Move to Key Club", "blackOwned": false,
-      "pills": ["Multi-Level", "Young Professionals", "DJ"]
+      "mustOrder": "Whiskey at the Bar + Move to Key Club",
+      "blackOwned": false,
+      "pills": [
+        "Multi-Level",
+        "Young Professionals",
+        "DJ"
+      ]
     },
     {
-      "rank": 10, "name": "Scarlett Bar", "neighborhood": "Boystown",
+      "rank": 10,
+      "name": "Scarlett Bar",
+      "neighborhood": "Boystown",
       "why": "High-energy dance bar in Chicago's most welcoming neighborhood. Inclusive, fun, and the kind of night out where you dance until close with strangers who become friends.",
-      "mustOrder": "Dance Floor Energy", "blackOwned": false,
-      "pills": ["Inclusive", "Dance Bar", "Boystown"]
+      "mustOrder": "Dance Floor Energy",
+      "blackOwned": false,
+      "pills": [
+        "Inclusive",
+        "Dance Bar",
+        "Boystown"
+      ]
     }
   ],
   "lunch": [
     {
-      "rank": 1, "name": "Au Cheval", "neighborhood": "West Loop",
+      "rank": 1,
+      "name": "Au Cheval",
+      "neighborhood": "West Loop",
       "why": "Home to one of the most viral burgers in America. The double cheeseburger has been featured in every major food publication and never stops trending. Expect a wait — it is worth it.",
-      "mustOrder": "Double Cheeseburger + Fried Egg", "blackOwned": false,
-      "pills": ["Most Viral Burger", "James Beard", "Always a Wait"]
+      "mustOrder": "Double Cheeseburger + Fried Egg",
+      "blackOwned": false,
+      "pills": [
+        "Most Viral Burger",
+        "James Beard",
+        "Always a Wait"
+      ]
     },
     {
-      "rank": 2, "name": "Girl & the Goat", "neighborhood": "West Loop",
+      "rank": 2,
+      "name": "Girl & the Goat",
+      "neighborhood": "West Loop",
       "why": "Stephanie Izard's legendary West Loop restaurant. The wood-roasted pig face and goat empanadas have been on more food TikToks than almost anything in Chicago.",
-      "mustOrder": "Wood Roasted Pig Face", "blackOwned": false,
-      "pills": ["Top Chef Winner", "West Loop Icon", "Viral Dishes"]
+      "mustOrder": "Wood Roasted Pig Face",
+      "blackOwned": false,
+      "pills": [
+        "Top Chef Winner",
+        "West Loop Icon",
+        "Viral Dishes"
+      ]
     },
     {
-      "rank": 3, "name": "J.P. Graziano Grocery", "neighborhood": "West Loop",
+      "rank": 3,
+      "name": "J.P. Graziano Grocery",
+      "neighborhood": "West Loop",
       "why": "A century-old Italian deli making what The Infatuation calls one of Chicago's best sandwiches. The GTP sub is a Chicago lunch institution that keeps going viral.",
-      "mustOrder": "GTP Italian Sub", "blackOwned": false,
-      "pills": ["100 Year Old Deli", "Infatuation 9.2", "Iconic Sandwich"]
+      "mustOrder": "GTP Italian Sub",
+      "blackOwned": false,
+      "pills": [
+        "100 Year Old Deli",
+        "Infatuation 9.2",
+        "Iconic Sandwich"
+      ]
     },
     {
-      "rank": 4, "name": "Monteverde", "neighborhood": "West Loop",
+      "rank": 4,
+      "name": "Monteverde",
+      "neighborhood": "West Loop",
       "why": "Best Italian restaurant in Chicago. Lunch is more accessible than dinner and the handmade pasta is some of the best you'll have anywhere in the country.",
-      "mustOrder": "Cacio Whey Pepe + Any Pasta", "blackOwned": false,
-      "pills": ["Best Italian", "Handmade Pasta", "James Beard"]
+      "mustOrder": "Cacio Whey Pepe + Any Pasta",
+      "blackOwned": false,
+      "pills": [
+        "Best Italian",
+        "Handmade Pasta",
+        "James Beard"
+      ]
     },
     {
-      "rank": 5, "name": "Garifuna Flava", "neighborhood": "Rogers Park",
+      "rank": 5,
+      "name": "Garifuna Flava",
+      "neighborhood": "Rogers Park",
       "why": "Chicago's only Garifuna restaurant. Viral for its unique Caribbean-Central American fusion flavors that you can't get anywhere else in the country. A total hidden gem.",
-      "mustOrder": "Hudut (Coconut Fish Stew)", "blackOwned": true,
-      "pills": ["Unique Cuisine", "Hidden Gem", "Black-Owned"]
+      "mustOrder": "Hudut (Coconut Fish Stew)",
+      "blackOwned": true,
+      "pills": [
+        "Unique Cuisine",
+        "Hidden Gem",
+        "Black-Owned"
+      ]
     },
     {
-      "rank": 6, "name": "Beatrix", "neighborhood": "River North",
+      "rank": 6,
+      "name": "Beatrix",
+      "neighborhood": "River North",
       "why": "The city's most popular power lunch spot. Clean, well-executed food with a stunning interior. The grain bowls and avocado toast go viral constantly for good reason.",
-      "mustOrder": "Grain Bowl + Matcha Latte", "blackOwned": false,
-      "pills": ["Power Lunch", "Aesthetic Interior", "Healthy Options"]
+      "mustOrder": "Grain Bowl + Matcha Latte",
+      "blackOwned": false,
+      "pills": [
+        "Power Lunch",
+        "Aesthetic Interior",
+        "Healthy Options"
+      ]
     },
     {
-      "rank": 7, "name": "Santa Masa Tamaleria", "neighborhood": "Pilsen",
+      "rank": 7,
+      "name": "Santa Masa Tamaleria",
+      "neighborhood": "Pilsen",
       "why": "Hand-made tamales that went viral for their texture and depth of flavor. A tiny spot with a massive following and one of Chicago's most beloved Mexican lunch experiences.",
-      "mustOrder": "Red Pork Tamale + Atole", "blackOwned": false,
-      "pills": ["Viral Tamales", "Hidden Gem", "Authentic Mexican"]
+      "mustOrder": "Red Pork Tamale + Atole",
+      "blackOwned": false,
+      "pills": [
+        "Viral Tamales",
+        "Hidden Gem",
+        "Authentic Mexican"
+      ]
     },
     {
-      "rank": 8, "name": "Bocadillo Market", "neighborhood": "West Town",
+      "rank": 8,
+      "name": "Bocadillo Market",
+      "neighborhood": "West Town",
       "why": "Spanish-inspired sandwiches and tapas in a gorgeous market setting. The pan con tomate alone is worth the visit and has been posted thousands of times.",
-      "mustOrder": "Pan con Tomate + Jamón Bocadillo", "blackOwned": false,
-      "pills": ["Spanish Market", "Viral Sandwiches", "Great Aesthetic"]
+      "mustOrder": "Pan con Tomate + Jamón Bocadillo",
+      "blackOwned": false,
+      "pills": [
+        "Spanish Market",
+        "Viral Sandwiches",
+        "Great Aesthetic"
+      ]
     },
     {
-      "rank": 9, "name": "Galit", "neighborhood": "Lincoln Park",
+      "rank": 9,
+      "name": "Galit",
+      "neighborhood": "Lincoln Park",
       "why": "Michelin-starred Israeli restaurant. The hummus with lamb and their pita have a cult following and regularly blow up on food TikTok as must-try Chicago dishes.",
-      "mustOrder": "Hummus + Lamb + Pita", "blackOwned": false,
-      "pills": ["Michelin Star", "Middle Eastern", "Cult Hummus"]
+      "mustOrder": "Hummus + Lamb + Pita",
+      "blackOwned": false,
+      "pills": [
+        "Michelin Star",
+        "Middle Eastern",
+        "Cult Hummus"
+      ]
     },
     {
-      "rank": 10, "name": "Publican Quality Meats", "neighborhood": "West Loop",
+      "rank": 10,
+      "name": "Publican Quality Meats",
+      "neighborhood": "West Loop",
       "why": "Butcher shop meets sandwich counter. The butcher's ham and gruyère sandwich has been called one of the best in the city. Lunch here always looks incredible on camera.",
-      "mustOrder": "Butcher's Ham & Gruyère", "blackOwned": false,
-      "pills": ["Butcher Counter", "Best Sandwiches", "West Loop"]
+      "mustOrder": "Butcher's Ham & Gruyère",
+      "blackOwned": false,
+      "pills": [
+        "Butcher Counter",
+        "Best Sandwiches",
+        "West Loop"
+      ]
     }
   ],
   "chicagoeats": [
     {
-      "rank": 1, "name": "Au Cheval — The Cheeseburger", "neighborhood": "West Loop",
+      "rank": 1,
+      "name": "Au Cheval — The Cheeseburger",
+      "neighborhood": "West Loop",
       "why": "Repeatedly crowned one of the best burgers in America. The double smash patty with house sauce is a Chicago food rite of passage. If you eat one thing — this is it.",
-      "mustOrder": "Double Cheeseburger", "blackOwned": false,
-      "pills": ["#1 Burger in America", "Always Trending", "Iconic"]
+      "mustOrder": "Double Cheeseburger",
+      "blackOwned": false,
+      "pills": [
+        "#1 Burger in America",
+        "Always Trending",
+        "Iconic"
+      ]
     },
     {
-      "rank": 2, "name": "Lou Malnati's", "neighborhood": "Multiple Locations",
+      "rank": 2,
+      "name": "Lou Malnati's",
+      "neighborhood": "Multiple Locations",
       "why": "Chicago's most iconic deep-dish pizzeria. The butter crust, vine-ripened tomato sauce, and sausage patty are legendary. Their Italian Beef Deep Dish combo recently went mega-viral.",
-      "mustOrder": "Deep Dish Sausage Pizza", "blackOwned": false,
-      "pills": ["Deep Dish Icon", "Butter Crust", "Chicago Legend"]
+      "mustOrder": "Deep Dish Sausage Pizza",
+      "blackOwned": false,
+      "pills": [
+        "Deep Dish Icon",
+        "Butter Crust",
+        "Chicago Legend"
+      ]
     },
     {
-      "rank": 3, "name": "Al's #1 Italian Beef", "neighborhood": "Multiple Locations",
+      "rank": 3,
+      "name": "Al's #1 Italian Beef",
+      "neighborhood": "Multiple Locations",
       "why": "The original Italian beef stand, open since 1938. Made famous worldwide by the show 'The Bear.' Order it dipped, hot. Every food creator who visits Chicago comes here first.",
-      "mustOrder": "Italian Beef — Dipped, Hot", "blackOwned": false,
-      "pills": ["The Bear Famous", "Since 1938", "Chicago Original"]
+      "mustOrder": "Italian Beef — Dipped, Hot",
+      "blackOwned": false,
+      "pills": [
+        "The Bear Famous",
+        "Since 1938",
+        "Chicago Original"
+      ]
     },
     {
-      "rank": 4, "name": "Harold's Chicken Shack", "neighborhood": "Bronzeville",
+      "rank": 4,
+      "name": "Harold's Chicken Shack",
+      "neighborhood": "Bronzeville",
       "why": "A Chicago institution since 1950. The fried chicken with mild or hot sauce on top of white bread is a cultural touchstone. Featured in rap lyrics, TV shows, and a million food posts.",
-      "mustOrder": "2-Piece Dark with Mild Sauce", "blackOwned": true,
-      "pills": ["Black-Owned", "Since 1950", "Chicago Culture"]
+      "mustOrder": "2-Piece Dark with Mild Sauce",
+      "blackOwned": true,
+      "pills": [
+        "Black-Owned",
+        "Since 1950",
+        "Chicago Culture"
+      ]
     },
     {
-      "rank": 5, "name": "Portillo's", "neighborhood": "River North",
+      "rank": 5,
+      "name": "Portillo's",
+      "neighborhood": "River North",
       "why": "Home of the Chicago-style hot dog and Italian beef. The chocolate cake shake is one of the most viral food items in Chicago history — it's a milkshake blended with chocolate cake.",
-      "mustOrder": "Chocolate Cake Shake + Chicago Dog", "blackOwned": false,
-      "pills": ["Viral Cake Shake", "Chicago Hot Dog", "Tourist Essential"]
+      "mustOrder": "Chocolate Cake Shake + Chicago Dog",
+      "blackOwned": false,
+      "pills": [
+        "Viral Cake Shake",
+        "Chicago Hot Dog",
+        "Tourist Essential"
+      ]
     },
     {
-      "rank": 6, "name": "Pequod's Pizza", "neighborhood": "Lincoln Park",
+      "rank": 6,
+      "name": "Pequod's Pizza",
+      "neighborhood": "Lincoln Park",
       "why": "Known for the caramelized-cheese crust that no other deep-dish place does. The crispy burnt cheese edge has been the subject of countless TikToks and food debates.",
-      "mustOrder": "Deep Dish with Caramelized Crust", "blackOwned": false,
-      "pills": ["Caramelized Crust", "Deep Dish Wars", "Lincoln Park"]
+      "mustOrder": "Deep Dish with Caramelized Crust",
+      "blackOwned": false,
+      "pills": [
+        "Caramelized Crust",
+        "Deep Dish Wars",
+        "Lincoln Park"
+      ]
     },
     {
-      "rank": 7, "name": "Lem's Bar-B-Q", "neighborhood": "Chatham",
+      "rank": 7,
+      "name": "Lem's Bar-B-Q",
+      "neighborhood": "Chatham",
       "why": "Chicago's most celebrated BBQ institution. Their rib tips and hot links are a South Side tradition going back generations. A pit stop for anyone serious about Chicago food culture.",
-      "mustOrder": "Rib Tips + Hot Links", "blackOwned": true,
-      "pills": ["Black-Owned", "South Side Legend", "BBQ Institution"]
+      "mustOrder": "Rib Tips + Hot Links",
+      "blackOwned": true,
+      "pills": [
+        "Black-Owned",
+        "South Side Legend",
+        "BBQ Institution"
+      ]
     },
     {
-      "rank": 8, "name": "The Purple Pig", "neighborhood": "Magnificent Mile",
+      "rank": 8,
+      "name": "The Purple Pig",
+      "neighborhood": "Magnificent Mile",
       "why": "Mediterranean small plates with a bold pork focus. The cheese & charcuterie and milk-braised pork shoulder have been trending for years and never disappoint.",
-      "mustOrder": "Milk-Braised Pork Shoulder", "blackOwned": false,
-      "pills": ["Small Plates", "Magnificent Mile", "Always Trending"]
+      "mustOrder": "Milk-Braised Pork Shoulder",
+      "blackOwned": false,
+      "pills": [
+        "Small Plates",
+        "Magnificent Mile",
+        "Always Trending"
+      ]
     },
     {
-      "rank": 9, "name": "Giordano's", "neighborhood": "Multiple Locations",
+      "rank": 9,
+      "name": "Giordano's",
+      "neighborhood": "Multiple Locations",
       "why": "The stuffed deep-dish capital of Chicago. Their pizza takes 45 minutes to cook because it's essentially a pie — layers of cheese, filling, then more crust. A Chicago-only experience.",
-      "mustOrder": "Stuffed Spinach Deep Dish", "blackOwned": false,
-      "pills": ["Stuffed Deep Dish", "45-Minute Pizza", "Chicago Staple"]
+      "mustOrder": "Stuffed Spinach Deep Dish",
+      "blackOwned": false,
+      "pills": [
+        "Stuffed Deep Dish",
+        "45-Minute Pizza",
+        "Chicago Staple"
+      ]
     },
     {
-      "rank": 10, "name": "Superdawg Drive-In", "neighborhood": "Norwood Park",
+      "rank": 10,
+      "name": "Superdawg Drive-In",
+      "neighborhood": "Norwood Park",
       "why": "A 1948 drive-in with giant hot dog mascots on the roof. The original Chicago hot dog experience — car hops, vintage vibes, and a dog that's been perfected over 75 years.",
-      "mustOrder": "Superdawg + Superfries", "blackOwned": false,
-      "pills": ["Since 1948", "Drive-In", "Chicago Hot Dog"]
+      "mustOrder": "Superdawg + Superfries",
+      "blackOwned": false,
+      "pills": [
+        "Since 1948",
+        "Drive-In",
+        "Chicago Hot Dog"
+      ]
     }
   ]
 }
